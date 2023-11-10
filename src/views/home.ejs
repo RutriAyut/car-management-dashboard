@@ -16,13 +16,14 @@
   </head>
   <body>
     <div class="container">
-      <% cars.map(({id, name, rent_per_day, type, update})=> { %>
+      <% cars.map(({id, name, rent_per_day, type, update, image})=> { %>
       <div class="card">
         <% for (let i = 0; i < types.length; i++) { %> <% if(types[i].id ===
         type) { %>
         <div class="card-header"><%= `${name} / ${types[i].name}` %></div>
         <%}}%>
         <div class="card-body">
+          <img src="<%=`${image}`%>" />
           <h5 class="card-title">Rp. <%= `${rent_per_day}` %> / hari</h5>
           <p class="card-text">Update at <%= `${update}` %></p>
           <a href="/cars/details/<%= `${id}` %>" class="btn btn-primary"

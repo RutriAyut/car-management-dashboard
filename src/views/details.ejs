@@ -20,6 +20,7 @@
         <div class="card-header"><%= `${cars.name} / ${types.name}` %></div>
 
         <div class="card-body">
+          <img src="<%= `${cars.image}`%>" />
           <h5 class="card-title">Rp. <%= `${cars.rent_per_day}` %> / hari</h5>
           <p class="card-text">Update at <%= `${cars.update}` %></p>
         </div>
