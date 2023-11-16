@@ -9,7 +9,6 @@ export async function up(knex: Knex): Promise<void> {
     table.integer("rent_per_day");
     table.string("image").notNullable();
     table.integer("type").notNullable();
-    table.date("update");
   });
 }
 
