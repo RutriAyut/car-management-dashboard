@@ -3,6 +3,8 @@ import knex from "knex";
 import { Model } from "objection";
 import handleLogger from "./src/middleware/handleLogger";
 const carRouter = require("./src/routes/carRouter");
+const authenticationRouter = require("./src/routes/authenticationRouter");
+
 const knexInstance = knex({
   client: "postgresql",
   connection: {
@@ -35,11 +37,12 @@ class Applicaction {
     this.app.use(express.static("public"));
     this.app.use(express.urlencoded());
     this.app.use(express.json());
-    this.app.use(handleLogger);
+    // this.app.use(handleLogger);
   }
 
   routes() {
     this.app.use("/cars", carRouter);
+    this.app.use("/user", authenticationRouter);
   }
 
   start(): void {

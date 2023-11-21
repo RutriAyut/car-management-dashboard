@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { CarModel } from "../models/cars";
 import { CarTypeModel } from "../models/types";
 import CarService from "../services/carService";
 import TypeService from "../services/typeService";

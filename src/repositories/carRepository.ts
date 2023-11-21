@@ -2,7 +2,7 @@ import { CarModel } from "../models/cars";
 
 export default class CarRepository {
   async getAll() {
-    return (await CarModel.query()) || [];
+    return await CarModel.query();
   }
 
   async getById(id: number) {

@@ -13,7 +13,6 @@ export async function seed(knex: Knex): Promise<void> {
       rent_per_day: 200000,
       image: "kosong",
       type: 1,
-      update: new Date(),
     },
     {
       id: 2,
@@ -21,7 +20,6 @@ export async function seed(knex: Knex): Promise<void> {
       rent_per_day: 800000,
       image: "kosong",
       type: 1,
-      update: new Date(),
     },
   ]);
 }
