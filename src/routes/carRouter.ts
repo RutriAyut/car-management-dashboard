@@ -2,6 +2,7 @@ import express, { Router } from "express";
 const router: Router = express.Router();
 const carController = require("./../controllers/carController");
 import upload from "./../middleware/upload";
+import isAdmin from "../middleware/isAdmin";
 
 // show data cars
 router.get("/", carController.get);

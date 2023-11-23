@@ -20,10 +20,34 @@ link : https://dbdiagram.io/d/654b34df7d8bbd6465bb8e45
 - ts-node
 - typescript
 - uuid
+- bcryptjs
+-
 
 Server app berjalan di port 8000 `http://localhost:8000/`
 
 ## Server Routing
+
+### Tanpa Login
+
+| Page          | Route          | Default Route                     | Http Method |
+| ------------- | -------------- | --------------------------------- | ----------- |
+| Register Page | `/user/signup` | http://localhost:8000/user/signup | Post        |
+| Login Page    | `/user/signin` | http://localhost:8000/user/signin | Post        |
+
+### Sebagai Member
+
+| Page         | Route    | Default Route               | Http Method |
+| ------------ | -------- | --------------------------- | ----------- |
+| Get All Cars | `/cars/` | http://localhost:8000/cars/ | Get         |
+
+### Sebagai Super Admin
+
+| Page                   | Route          | Default Route                     | Http Method |
+| ---------------------- | -------------- | --------------------------------- | ----------- |
+| Get All Users          | `/manage/list` | http://localhost:8000/manage/list | Get         |
+| Change member to admin | `/update/:id`  | http://localhost:8000//update/2   | Put         |
+
+### Bisa diakses Super Admin dan Admin
 
 | Page         | Route              | Default Route                       | Http Method |
 | ------------ | ------------------ | ----------------------------------- | ----------- |
@@ -36,11 +60,77 @@ Server app berjalan di port 8000 `http://localhost:8000/`
 
 ## REST API Endpoints
 
-### Get All Car
+### Tanpa Login
+
+#### Register Page
+
+Registrasi User Baru Sebagai Member
+
+##### _HTTP Request_
+
+> **POST**  
+> `/user/signup`
+
+#### _Default Request URL_
+
+    http://localhost:8000/user/signup
+
+#### _Expected Request_
+
+Request Type: `application/json`  
+Request Body:
+
+    {
+    	"emai": string,
+    	"password": string,
+    }
+
+#### _Expected Response_
+
+Response Code: `201`  
+Response Type: `application/json`  
+Response Body:
+<img src="./public/authentication/registrasi.png">
+
+#### Login Page
+
+Login Page
+
+##### _HTTP Request_
+
+> **POST**  
+> `/user/signin`
+
+#### _Default Request URL_
+
+    http://localhost:8000/user/signin
+
+#### _Expected Request_
+
+Request Type: `application/json`  
+Request Body:
+
+    {
+    	"emai": string,
+    	"password": string,
+    }
+
+#### _Expected Response_
+
+Response Code: `200`  
+Response Type: `application/json`  
+Response Body:
+<img src="./public/authentication/registrasi.png">
+
+---
+
+### Login Sebagai Member
+
+#### Get All Car
 
 Mengembalikan array berisi data mobil dari database. (ditampilkan di html/ejs)
 
-#### _HTTP Request_
+##### _HTTP Request_
 
 > **GET**  
 > `/cars`
@@ -59,20 +149,43 @@ Response Body:
 
 ---
 
-### Get Car with ID
+### Login Sebagai Super Admin dan Admin
+
+#### Get All Car
+
+Mengembalikan array berisi data mobil dari database. (ditampilkan di html/ejs)
+
+##### _HTTP Request_
+
+> **GET**  
+> `/cars`
+
+#### _Default Request URL_
+
+    http://localhost:8000/api/cars
+
+#### _Expected Response_
+
+Response Code: `200`  
+Response Type: `ejs`  
+Response Body:
+
+  <img src="./public/getAll.png">
+
+#### Get Car with ID
 
 Mengembalikan data car berdasarkan dengan ID.
 
-#### _HTTP Request_
+##### _HTTP Request_
 
 > **GET**  
 > `/cars/details/:id`
 
-#### _Default Request URL_
+##### _Default Request URL_
 
     http://localhost:8000/cars/details/1
 
-#### _Expected Response_
+##### _Expected Response_
 
 Response Code: `200`  
 Response Type: `ejs`  
@@ -82,22 +195,22 @@ Response Body:
 
 ---
 
-### Add New Car
+#### Add New Car
 
 Menambahkan data mobil baru ke database.
 
-#### _HTTP Request_
+##### _HTTP Request_
 
 menampilkan form isi data mobil _masih belum berhasil menambahkan dari front end_
 
 > **GET**  
 > `/cars/create`
 
-#### _Default Request URL_
+##### _Default Request URL_
 
     http://localhost:8000/cars/create
 
-#### _Expected Response_
+##### _Expected Response_
 
 Response Code: `200`
 Response Type: `ejs`  
@@ -105,16 +218,16 @@ Response Body:
 
   <img src="./public/createView.png">
 
-#### _HTTP Request_
+##### _HTTP Request_
 
 > **POST**  
 > `/cars/create`
 
-#### _Default Request URL_
+##### _Default Request URL_
 
     http://localhost:8000/cars/create
 
-#### _Expected Request_
+##### _Expected Request_
 
 Request Type: `application/json`  
 Request Body:
@@ -127,7 +240,7 @@ Request Body:
     	"type": number // id yang ada di tabel type
     }
 
-#### _Expected Response_
+##### _Expected Response_
 
 Response Code: `201`  
 Response Type: `application/json`  
@@ -137,20 +250,20 @@ Response Body:
 
 ---
 
-### Edit Car Data with ID
+#### Edit Car Data with ID
 
 Mengedit data car berdasarkan ID.
 
-#### _HTTP Request_
+##### _HTTP Request_
 
 > **PUT**  
 > `/cars/update/:id`
 
-#### _Default Request URL_
+##### _Default Request URL_
 
     http://localhost:8000/cars/update/1
 
-#### _Expected Request_
+##### _Expected Request_
 
 Request Type: `application/json`  
 Request Body:
@@ -162,7 +275,7 @@ Request Body:
     	"type": number // id yang ada di tabel type <optional>
     }
 
-#### _Expected Response_
+##### _Expected Response_
 
 Response Code: `200`  
 Response Type: `application/json`  
@@ -172,20 +285,20 @@ Response Body:
 
 ---
 
-### Delete Car with ID
+#### Delete Car with ID
 
 Menghapus data car berdasarkan ID.
 
-#### _HTTP Request_
+##### _HTTP Request_
 
 > **DELETE**  
 > `/cars/:id`
 
-#### _Default Request URL_
+##### _Default Request URL_
 
     http://localhost:8000/cars/1
 
-#### _Expected Response_
+##### _Expected Response_
 
 Response Code: `200`  
 Response Type: `application/json`  
