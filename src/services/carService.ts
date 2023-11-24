@@ -11,8 +11,16 @@ export default class CarService {
     return await this.#carRepository.getAll();
   }
 
+  async getAllSuper() {
+    return await this.#carRepository.getAllSuper();
+  }
+
   async getById(id: number) {
     return await this.#carRepository.getById(id);
+  }
+
+  async getByIdSuper(id: number) {
+    return await this.#carRepository.getByIdSuper(id);
   }
 
   async post(req: any, img: string) {

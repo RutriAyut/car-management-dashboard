@@ -1,7 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
 import UserService from "../services/userService";
-import RoleService from "../services/roleService";
 
 const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
   if (req.body.user) {

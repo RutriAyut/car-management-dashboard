@@ -38,13 +38,13 @@ class Applicaction {
     this.app.set("view engine", "ejs");
     this.app.set("views", "./src/views");
     this.app.use(express.static("public"));
-    this.app.use(express.urlencoded());
+    this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     // this.app.use(handleLogger);
   }
 
   routes() {
-    this.app.use("/cars", authorize, isAdmin, carRouter);
+    this.app.use("/cars", carRouter);
     this.app.use("/user", authenticationRouter); // kebutuhan login dan register
     this.app.use("/manage", userRouter); // segala sesuatu yang berhubungan dengan users
   }

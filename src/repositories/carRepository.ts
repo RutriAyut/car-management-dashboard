@@ -2,11 +2,22 @@ import { CarModel } from "../models/cars";
 
 export default class CarRepository {
   async getAll() {
+    return await CarModel.query().where("isDeleted", "=", false);
+  }
+
+  async getAllSuper() {
     return await CarModel.query();
   }
 
   async getById(id: number) {
-    return await CarModel.query().where("id", id).throwIfNotFound();
+    return await CarModel.query()
+      .where({ id })
+      .where("isDeleted", "=", false)
+      .throwIfNotFound();
+  }
+
+  async getByIdSuper(id: number) {
+    return await CarModel.query().where({ id }).throwIfNotFound();
   }
 
   async post(reqBody: any, img: string) {
@@ -16,13 +27,15 @@ export default class CarRepository {
     const rent_per_day = reqBody.rent;
     const type = reqBody.type;
     const image = img;
+    const isDeleted = false;
 
-    const postCar = await CarModel.query().insert({
+    return await CarModel.query().insert({
       id,
       name,
       rent_per_day,
       image,
       type,
+      isDeleted,
     });
   }
 
@@ -42,6 +55,8 @@ export default class CarRepository {
   }
 
   async delete(id: number) {
-    const deleteData = await CarModel.query().where("id", id).del();
+    return await CarModel.query().where({ id }).update({
+      isDeleted: true,
+    });
   }
 }
