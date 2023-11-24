@@ -1,0 +1,503 @@
+openapi: 3.0.3
+info:
+  title: Binar Car Rental API
+  description: Binar Car Rental API Backend
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+tags:
+  - name: authentication
+    description: Operations about signup and singin
+  - name: car
+    description: Operations about car
+  - name: user
+    description: Operations about user
+  - name: super
+    description: Operations by super admin
+paths:
+  /user/signup:
+    post:
+      tags:
+        - authentication
+      summary: Registration new user as member
+      description: Registration new user as member
+      requestBody:
+        description: Create a new user in users and add user_role
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "201":
+          description: Successful create user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User user@mail.com is sucessfully register"
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        example: "user@mail.com"
+                      password:
+                        type: string
+                        example: "$2a$10$KoMBRk/bujzZxIU04PDTf.ed5HIOW6V42zAiDm9WX60cRKRXOl2/K"
+                      id:
+                        type: number
+                        description: role id
+                        example: 3
+        "409":
+          description: Email alredy exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Email is alredy registered"
+        "400":
+          description: Invalid status value
+  /user/signin:
+    post:
+      tags:
+        - authentication
+      summary: Login User
+      description: Login User
+      requestBody:
+        description: Login user and create JWT token]
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: Successfully Logged In
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Successfully Logged In MEMBER"
+                  token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJheXVAbWFpbC5jb20iLCJyb2xlIjoyLCJpYXQiOjE3MDA3OTI4ODd9.BgpyEl1EO-69HYFBZEYQP8efJBf1JhYXOzby96rvqmA"
+        "404":
+          description: Email is not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Email is not exist, Register first!"
+        "401":
+          description: Invalid password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Password is wrong, try again!"
+  /cars:
+    get:
+      tags:
+        - car
+      summary: List of cars
+      description: List of cars where not deleted
+      responses:
+        "200":
+          description: Get All Data Cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GetCar"
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error : No Data Found"
+  /cars/details/{id}:
+    get:
+      tags:
+        - car
+      summary: Finds Car by ID
+      description: Return a single Car.
+      parameters:
+        - name: id
+          in: path
+          description: ID of car to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GetCar"
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Cars By id 90 not found"
+  /cars/create:
+    post:
+      tags:
+        - car
+      summary: Create Data Car
+      description: "Create Data Car"
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Create a new data car by user with role Admin and Super Admin
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Brimo"
+                rent:
+                  type: number
+                  example: 800000
+                picture:
+                  type: string
+                  format: binary
+                type:
+                  type: number
+                  example: 2
+      required: true
+      responses:
+        "201":
+          description: Successfully Create Car
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Cars Brimo is sucessfully add to data"
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error"
+  /cars/update/{id}:
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - car
+      summary: Update car
+      description: Update car by user with role admin and super admin
+      parameters:
+        - name: id
+          in: path
+          description: ID of car to return
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Update an existent car in the cars
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Brimo"
+                rent:
+                  type: number
+                  example: 800000
+                picture:
+                  type: string
+                  format: binary
+                type:
+                  type: number
+                  example: 2
+      responses:
+        "400":
+          description: Data not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Data not found"
+        "200":
+          description: Successfully Delete Car
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Data car Brimo is sucessfully update"
+  /cars/{id}:
+    delete:
+      security:
+        - bearerAuth: []
+      tags:
+        - car
+      summary: Deletes a car
+      description: delete a car by user with role admin dan super admin
+      parameters:
+        - name: id
+          in: path
+          description: ID of car to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        "400":
+          description: Data not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Data not found"
+        "200":
+          description: Successfully Delete Car
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Data car Brimo is sucessfully delete"
+  /manage/super/list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - super
+      summary: Get All Data Users
+      description: Get All Data Users
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GetUser"
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Erorr : No User was found"
+  /manage/super/update/{id}:
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - super
+      summary: Update MEMBER to ADMIN
+      description: Update MEMBER to ADMIN by super admin
+      parameters:
+        - name: id
+          in: path
+          description: ID of car to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GetUser"
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Erorr : No User was found"
+  /cars/super:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - super
+      summary: List of cars
+      description: List of cars even the car is deleted
+      responses:
+        "200":
+          description: Get All Data Cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GetCar"
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error : No Data Found"
+  /cars/super/details/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - super
+      summary: Finds Car by ID
+      description: Return a single Car even the car is deleted
+      parameters:
+        - name: id
+          in: path
+          description: ID of car to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GetCar"
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Cars By id 90 not found"
+  /manage/profile:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - user
+      summary: Get Data User
+      description: Get Data User
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GetUser"
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Erorr : No User was found"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: "super_admin@gmail.com"
+        password:
+          type: string
+          example: "superadmin"
+    GetCar:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Honda"
+        rent_per_day:
+          type: integer
+          example: 50000
+        image:
+          type: string
+          example: "image.png"
+        type:
+          type: number
+          example: 1
+        isDeleted:
+          type: boolean
+          example: false
+    GetUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        email:
+          type: string
+          example: "user@mail.com"
+        name:
+          type: string
+          example: "MEMBER"

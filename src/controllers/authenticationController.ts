@@ -6,6 +6,7 @@ const roleId = require("./../middleware/getRole");
 
 import UserService from "./../services/userService";
 import UserRoleService from "../services/userRoleService";
+import RoleService from "../services/roleService";
 
 interface UserPayload {
   id?: number;
@@ -26,8 +27,7 @@ const signin = async (req: Request, res: Response) => {
   const user = await new UserService().getByEmail({ email });
   if (!user) {
     return res.status(404).json({
-      message: "Email is not exist, try another one!",
-      data: [],
+      message: "Email is not exist, Register first!",
     });
   }
 
@@ -36,7 +36,6 @@ const signin = async (req: Request, res: Response) => {
   if (!isPasswordCorrect) {
     return res.status(401).json({
       message: "Password is wrong, try again!",
-      data: [],
     });
   }
 
@@ -47,14 +46,23 @@ const signin = async (req: Request, res: Response) => {
     email: user.email,
     role: role.role_id,
   });
+  const roleObj = await new RoleService().getById(role.role_id);
+  if (roleObj) {
+    const roleName = roleObj.name;
+    console.log({ roleObj, roleName });
+    return res.status(200).json({
+      message: `Successfully Logged In ${roleName}`,
+      token,
+    });
+  }
   return res.status(200).json({
-    status: 200,
-    message: "Successfully Logged In",
+    message: `Successfully Logged In member`,
     token,
   });
 };
 
 const signup = async (req: Request, res: Response, next: NextFunction) => {
+  console.log("heyo");
   const email = req.body.email;
   const password = req.body.password || "";
   const encryptedPassword = await encryptPassword(password);
@@ -62,7 +70,9 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
   // cek email dulu
   const isEmail = await new UserService().getByEmail({ email });
   if (isEmail) {
-    return res.status(400).json(`email alredy registered`);
+    return res.status(409).json({
+      message: `Email is alredy registered`,
+    });
   }
 
   // simpan data user ke tabel users
@@ -75,7 +85,10 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
     // simpan data user ke user_role
     try {
       const userRoleSignup = await new UserRoleService().post(userId);
-      res.status(201).send(`User ${email} is sucessfully register`);
+      res.status(201).json({
+        message: `User ${email} is sucessfully register`,
+        data: userSignup,
+      });
     } catch (err) {
       res.status(400).send({ err });
     }

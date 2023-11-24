@@ -15,8 +15,7 @@ const get = async (req: Request, res: Response) => {
     const getCars = await new CarService().getAll();
     res.status(200).json({ getCars });
   } catch (error) {
-    res.status(404).json("Erorr : No Data Found");
-    console.log(error);
+    res.status(404).json({ message: "Error : No Data Found" });
   }
 };
 
@@ -38,7 +37,7 @@ const getById = async (req: Request, res: Response) => {
     let filterById = await new CarService().getById(id);
     res.status(200).json({ filterById });
   } catch (error) {
-    res.status(404).json({ message: "No Cars was found" });
+    res.status(404).json({ message: "Cars By id " + id + " not found" });
   }
 };
 
@@ -51,10 +50,10 @@ const getByIdSuper = async (req: Request, res: Response) => {
       let log = await new UserCarService().getById(id);
       res.status(200).json({ filterById, log });
     } else {
-      res.status(404).json({ message: "No Cars was found" });
+      res.status(404).json({ message: "Cars By id " + id + " not found" });
     }
   } catch (error) {
-    res.status(404).json({ message: "No Cars was found" });
+    res.status(404).json({ message: "Cars By id " + id + " not found" });
   }
 };
 
@@ -77,9 +76,11 @@ const post = async (req: Request, res: Response) => {
     console.log(carId);
     const userCreate = await new UserCarService().post({ id: carId, userId });
     // res.status(201)
-    res.status(201).send(`Cars ${name} is sucessfully add to data`);
+    res
+      .status(201)
+      .json({ massege: `Cars ${name} is sucessfully add to data` });
   } catch (err) {
-    res.status(400).send({ err });
+    res.status(400).json({ err });
   }
 };
 
@@ -118,9 +119,9 @@ const put = async (req: Request, res: Response) => {
       String(image)
     );
     const putUserCar = await new UserCarService().put({ id, userId });
-    res.status(200).send(`Cars ${name} is sucessfully update`);
+    res.status(200).json({ massage: `Cars ${name} is sucessfully update` });
   } catch (err) {
-    res.status(400).send({ err });
+    res.status(400).json({ massege: "Data not found" });
   }
 };
 
@@ -136,9 +137,11 @@ const deleteById = async (req: Request, res: Response) => {
     const deleteData = await new CarService().delete(id);
     const deleteUserCar = await new UserCarService().delete({ id, userId });
 
-    res.status(200).send(`Data car ${filterById[0].name} sucessfully delete`);
+    res
+      .status(200)
+      .json({ massege: `Data car ${filterById[0].name} sucessfully delete` });
   } catch (err) {
-    res.status(400).send("Data not found");
+    res.status(400).json({ massege: "Data not found" });
   }
 };
 

@@ -2,12 +2,15 @@ import express, { Express } from "express";
 import knex from "knex";
 import { Model } from "objection";
 import handleLogger from "./src/middleware/handleLogger";
-import isAdmin from "./src/middleware/isAdmin";
-import authorize from "./src/middleware/authorize";
+
+const YAML = require("yamljs");
+const swaggerUI = require("swagger-ui-express");
+
 const carRouter = require("./src/routes/carRouter");
 const authenticationRouter = require("./src/routes/authenticationRouter");
 const userRouter = require("./src/routes/userRouter");
 
+const swaggerDocument = YAML.load("openAPI.yaml");
 const knexInstance = knex({
   client: "postgresql",
   connection: {
@@ -44,6 +47,11 @@ class Applicaction {
   }
 
   routes() {
+    this.app.use(
+      "/api-docs",
+      swaggerUI.serve,
+      swaggerUI.setup(swaggerDocument)
+    );
     this.app.use("/cars", carRouter);
     this.app.use("/user", authenticationRouter); // kebutuhan login dan register
     this.app.use("/manage", userRouter); // segala sesuatu yang berhubungan dengan users

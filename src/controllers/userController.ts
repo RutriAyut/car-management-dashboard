@@ -8,7 +8,7 @@ const getAll = async (req: Request, res: Response) => {
     const getUsers = await new UserService().getAll();
     return res.status(200).json({ getUsers });
   } catch (error) {
-    return res.status(404).json("Erorr : " + error);
+    return res.status(404).json({ massege: "Erorr : No User was found" });
   }
 };
 
@@ -22,7 +22,7 @@ const update = async (req: Request, res: Response) => {
       const getUsers = await new UserService().getById(id);
       res.status(200).json({ getUsers });
     } catch (err) {
-      res.status(404).json("Erorr : " + err);
+      res.status(404).json({ massage: `Erorr : No User was found` });
       console.log(err);
     }
   } catch (error) {
