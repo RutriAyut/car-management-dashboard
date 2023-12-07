@@ -6,12 +6,29 @@ import Col from "react-bootstrap/Col";
 import { carsBody, carsCard } from "../style";
 import Text from "../../Text";
 import Button from "../../Button";
+import { useState } from "react";
 
 function CardCars({ tittle, rentPerDay, id }) {
+  const [deleteCar, setDeleteCar] = useState(null);
   const navigate = useNavigate();
+
   const handleOnClick = ({ id }) => {
     console.log({ id });
     navigate("/admin/cars/edit/" + id);
+  };
+
+  const handleOnDelete = ({ id }) => {
+    const API = "http://localhost:8000/cars/" + id;
+
+    fetch(API, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((results) => {
+        setDeleteCar(results);
+      });
+
+    console.log({ deleteCar });
   };
   return (
     <Card className={carsCard}>
@@ -67,7 +84,11 @@ function CardCars({ tittle, rentPerDay, id }) {
         </Row>
         <Row>
           <Col>
-            <Button variant={2} width="100%">
+            <Button
+              variant={2}
+              width="100%"
+              onClick={() => handleOnDelete({ id })}
+            >
               Delete
             </Button>
           </Col>
