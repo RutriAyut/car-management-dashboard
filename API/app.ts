@@ -3,12 +3,14 @@ import knex from "knex";
 import { Model } from "objection";
 import handleLogger from "./src/middleware/handleLogger";
 
+const cors = require("cors");
 const YAML = require("yamljs");
 const swaggerUI = require("swagger-ui-express");
 
 const carRouter = require("./src/routes/carRouter");
 const authenticationRouter = require("./src/routes/authenticationRouter");
 const userRouter = require("./src/routes/userRouter");
+const typeRouter = require("./src/routes/typeRouter");
 
 const swaggerDocument = YAML.load("openAPI.yaml");
 const knexInstance = knex({
@@ -43,6 +45,7 @@ class Applicaction {
     this.app.use(express.static("public"));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use(cors());
     // this.app.use(handleLogger);
   }
 
@@ -55,6 +58,7 @@ class Applicaction {
     this.app.use("/cars", carRouter);
     this.app.use("/user", authenticationRouter); // kebutuhan login dan register
     this.app.use("/manage", userRouter); // segala sesuatu yang berhubungan dengan users
+    this.app.use("/type", typeRouter);
   }
 
   start(): void {
