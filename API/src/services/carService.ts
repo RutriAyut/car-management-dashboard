@@ -27,8 +27,34 @@ export default class CarService {
     return await this.#carRepository.post(req, img);
   }
 
-  async put(id: number, name: string, rent: number, type: number, img: string) {
-    return await this.#carRepository.put(id, name, rent, type, img);
+  async put(
+    id: number,
+    manufacture: string,
+    model: string,
+    rent: number,
+    type: number,
+    img: string,
+    description: string,
+    availableAt: Date,
+    available: boolean,
+    capacity: number,
+    transmission: string,
+    driver: boolean
+  ) {
+    return await this.#carRepository.put(
+      id,
+      manufacture,
+      model,
+      rent,
+      type,
+      img,
+      description,
+      availableAt,
+      available,
+      capacity,
+      transmission,
+      driver
+    );
   }
 
   async delete(id: number) {

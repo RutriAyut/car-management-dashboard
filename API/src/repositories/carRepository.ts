@@ -21,36 +21,63 @@ export default class CarRepository {
   }
 
   async post(reqBody: any, img: string) {
-    // const reqBody: any = req.body;
     const id = reqBody.id;
-    const name = reqBody.name;
+    const manufacture = reqBody.manufacture;
+    const model = reqBody.model;
     const rent_per_day = reqBody.rent;
     const type = reqBody.type;
     const image = img;
+    const description = reqBody.description;
+    const available_at = reqBody.availableAt;
+    const available = reqBody.available;
+    const capacity = reqBody.capacity;
+    const driver = reqBody.driver;
+    const transmission = reqBody.transmission;
     const isDeleted = false;
 
     return await CarModel.query().insert({
       id,
-      name,
+      manufacture,
+      model,
       rent_per_day,
       image,
       type,
+      description,
+      available_at,
+      available,
+      capacity,
+      driver,
+      transmission,
       isDeleted,
     });
   }
 
   async put(
     id: number,
-    name: string,
+    manufacture: string,
+    model: string,
     rent_per_day: number,
     type: number,
-    image: string
+    image: string,
+    description: string,
+    available_at: Date,
+    available: boolean,
+    capacity: number,
+    transmission: string,
+    driver: boolean
   ) {
     const updateDB = await CarModel.query().where("id", "=", id).update({
-      name,
+      manufacture,
+      model,
       rent_per_day,
       image,
       type,
+      description,
+      available_at,
+      available,
+      capacity,
+      transmission,
+      driver,
     });
   }
 

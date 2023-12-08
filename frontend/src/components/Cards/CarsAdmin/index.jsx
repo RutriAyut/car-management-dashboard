@@ -11,6 +11,7 @@ import { useState } from "react";
 function CardCars({ tittle, rentPerDay, id }) {
   const [deleteCar, setDeleteCar] = useState(null);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const handleOnClick = ({ id }) => {
     console.log({ id });
@@ -22,8 +23,13 @@ function CardCars({ tittle, rentPerDay, id }) {
 
     fetch(API, {
       method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        res.json();
+      })
       .then((results) => {
         setDeleteCar(results);
       });

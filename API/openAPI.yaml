@@ -181,9 +181,12 @@ paths:
             schema:
               type: object
               properties:
-                name:
+                manufacture:
                   type: string
-                  example: "Brimo"
+                  example: "BMW"
+                model:
+                  type: string
+                  example: X5
                 rent:
                   type: number
                   example: 800000
@@ -193,6 +196,23 @@ paths:
                 type:
                   type: number
                   example: 2
+                description:
+                  type: string
+                  example: "Rear passenger map pockets. Electrochromic rearview mirror. Dual chrome exhaust tips. Locking glove box."
+                available_at:
+                  type: datetime
+                available:
+                  type: boolean
+                  example: true
+                capacity:
+                  type: number
+                  example: 4
+                driver:
+                  type: boolean
+                  example: true
+                transmission:
+                  type: string
+                  example: "Automatic"
       required: true
       responses:
         "201":

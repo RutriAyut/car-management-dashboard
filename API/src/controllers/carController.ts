@@ -13,7 +13,7 @@ interface userCarLoad {
 const get = async (req: Request, res: Response) => {
   try {
     const getCars = await new CarService().getAll();
-    res.status(200).json({ getCars });
+    return res.status(200).json({ getCars });
   } catch (error) {
     res.status(404).json({ message: "Error : No Data Found" });
   }
@@ -65,7 +65,8 @@ const beforeAdd = async (req: Request, res: Response) => {
 // create car
 const post = async (req: Request, res: Response) => {
   const reqBody: any = req.body;
-  const name = req.body.name;
+  const manufacture = req.body.manufacture;
+  const model = req.body.model;
   const userId = reqBody.user[0].id;
 
   // upload image to cloudinary and get url
@@ -76,9 +77,9 @@ const post = async (req: Request, res: Response) => {
     console.log(carId);
     const userCreate = await new UserCarService().post({ id: carId, userId });
     // res.status(201)
-    res
-      .status(201)
-      .json({ massege: `Cars ${name} is sucessfully add to data` });
+    res.status(201).json({
+      massege: `Cars ${manufacture} ${model} is sucessfully add to data`,
+    });
   } catch (err) {
     res.status(400).json({ err });
   }
@@ -95,15 +96,29 @@ const put = async (req: Request, res: Response) => {
   let filterById = await new CarService().getById(id);
   let data = filterById[0];
   // save to variable
-  let name = data.name;
+  let manufacture = data.manufacture;
+  let model = data.model;
   let rent = data.rent_per_day;
   let type = data.type;
   let image = data.image;
+  let description = data.description;
+  let availableAt = data.available_at;
+  let available = data.available;
+  let capacity = data.capacity;
+  let driver = data.driver;
+  let transmission = data.transmission;
 
   //get input data if there are any
-  if (reqBody.name) name = reqBody.name;
+  if (reqBody.manufacture) manufacture = reqBody.manufacture;
+  if (reqBody.model) model = reqBody.model;
   if (reqBody.rent) rent = reqBody.rent;
   if (reqBody.type) type = reqBody.type;
+  if (reqBody.description) description = reqBody.description;
+  if (reqBody.availableAt) availableAt = reqBody.availableAt;
+  if (reqBody.available) available = reqBody.available;
+  if (reqBody.capacity) capacity = reqBody.capacity;
+  if (reqBody.driver) driver = reqBody.driver;
+  if (reqBody.transmission) transmission = reqBody.transmission;
 
   // upload image to cloudinary and get url
   const imageUpload = await new UploadOnline().url(req, res);
@@ -113,13 +128,22 @@ const put = async (req: Request, res: Response) => {
   try {
     const putCar = await new CarService().put(
       id,
-      name,
+      manufacture,
+      model,
       rent,
       type,
-      String(image)
+      String(image),
+      description,
+      availableAt,
+      available,
+      capacity,
+      transmission,
+      driver
     );
     const putUserCar = await new UserCarService().put({ id, userId });
-    res.status(200).json({ massage: `Cars ${name} is sucessfully update` });
+    res
+      .status(200)
+      .json({ massage: `Cars ${manufacture} ${model} is sucessfully update` });
   } catch (err) {
     res.status(400).json({ massege: "Data not found" });
   }
@@ -137,9 +161,9 @@ const deleteById = async (req: Request, res: Response) => {
     const deleteData = await new CarService().delete(id);
     const deleteUserCar = await new UserCarService().delete({ id, userId });
 
-    res
-      .status(200)
-      .json({ massege: `Data car ${filterById[0].name} sucessfully delete` });
+    res.status(200).json({
+      massege: `Data car ${filterById[0].manufacture} ${filterById[0].model} sucessfully delete`,
+    });
   } catch (err) {
     res.status(400).json({ massege: "Data not found" });
   }
