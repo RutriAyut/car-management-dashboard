@@ -88,9 +88,10 @@ const SearchForm = () => {
     const datetime = date + time;
 
     if (number) {
+      console.log({ number });
       const dataCar = temp.filter(
         (val) =>
-          val.passanger >= number &&
+          val.capacity >= number &&
           val.available_at >= datetime &&
           val.available === true &&
           val.driver === JSON.parse(driver)
@@ -176,6 +177,11 @@ const SearchForm = () => {
                 );
               }
             )}
+          {data.length === 0 ? (
+            <Text variant={3}>Mobil tidak ditemukan</Text>
+          ) : (
+            console.log("ada")
+          )}
         </Row>
       </Container>
     </section>
