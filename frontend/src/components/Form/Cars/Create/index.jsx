@@ -33,8 +33,6 @@ const CreateCar = () => {
   }, [type]);
 
   const API = "http://localhost:8000/cars/create";
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null);
   const token = localStorage.getItem("token");
 
   const post = async (
@@ -50,7 +48,6 @@ const CreateCar = () => {
     available,
     driver
   ) => {
-    const total = JSON.stringify(rent, type);
     try {
       fetch(API, {
         method: "POST",
@@ -73,7 +70,6 @@ const CreateCar = () => {
         },
       })
         .then((res) => {
-          console.log({ res });
           res.ok
             ? withReactContent(Swal).fire(
                 {
@@ -132,20 +128,6 @@ const CreateCar = () => {
     const picture = new FormData();
 
     picture.append("File", file);
-
-    console.log({
-      manufacture,
-      model,
-      rent,
-      picture,
-      type,
-      capacity,
-      transmission,
-      description,
-      availableAt,
-      available,
-      driver,
-    });
 
     await post({
       manufacture,
