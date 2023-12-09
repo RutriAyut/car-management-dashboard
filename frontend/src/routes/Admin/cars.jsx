@@ -10,16 +10,11 @@ import Breadcrumb from "../../components/Breadcrumb";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
 
-// const API =
-// "https://raw.githubusercontent.com/fnurhidayat/probable-garbanzo/main/data/cars.min.json";
-
 const API = "http://localhost:8000/cars";
 
 function Cars() {
   const [loading, setloading] = useState(false);
   const [data, setData] = useState(null);
-
-  console.log({ data });
 
   useEffect(() => {
     setloading(true);
@@ -89,16 +84,25 @@ function Cars() {
         {data &&
           data.getCars.map(
             (
-              // { id, manufacture, model, type, image, availableAt, rentPerDay },
-              { id, name, rent_per_day, image },
+              { id, manufacture, model, type, image, rent_per_day },
+              // { id, name, rent_per_day, image },
               key
             ) => {
+              const getType = data.getTypes.filter((val) => val.id === type)[0]
+                .name;
+              const create = data.getLogs.filter((val) => val.id === id)[0]
+                .create_at;
+              const update = data.getLogs.filter((val) => val.id === id)[0]
+                .update_at;
+
               return (
                 <Col key={key}>
                   <CardCars
                     id={id}
-                    tittle={name}
+                    tittle={manufacture + " " + model + " / " + getType}
                     rentPerDay={rent_per_day}
+                    updateAt={update ? update : create}
+                    image={image}
                   ></CardCars>
                 </Col>
               );

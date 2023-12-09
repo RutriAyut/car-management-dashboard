@@ -5,6 +5,10 @@ interface userCarLoad {
   userId: number;
 }
 export default class UserCarRepository {
+  async getAll() {
+    return await UserCarModel.query();
+  }
+
   async getById(id: number) {
     return await UserCarModel.query().where({ id }).throwIfNotFound();
   }

@@ -41,7 +41,7 @@ const EditCar = () => {
       fetch(API)
         .then((res) => res.json())
         .then((results) => {
-          setData(results.filterById[0]);
+          setData(results);
         });
     }
   }, [data]);
@@ -97,19 +97,27 @@ const EditCar = () => {
           <Row style={{ width: "100%" }}>
             <Col xs={4}>Nama*</Col>
             <Col xs={5}>
-              <Input id="name" type="text" value={data.name} />
+              <Input
+                id="name"
+                type="text"
+                value={data.filterById[0].manufacture}
+              />
             </Col>
           </Row>
           <Row style={{ width: "100%" }}>
             <Col xs={4}>Harga*</Col>
             <Col xs={5}>
-              <Input id="price" type="text" value={data.rent_per_day} />
+              <Input
+                id="price"
+                type="text"
+                value={data.filterById[0].rent_per_day}
+              />
             </Col>
           </Row>
           <Row style={{ width: "100%" }}>
             <Col xs={4}>Foto*</Col>
             <Col xs={5}>
-              <Input id="foto" type="file" value={data.picture} />
+              <Input id="foto" type="file" value={data.filterById[0].picture} />
               <Text size="10px" height="14px">
                 File size max. 2MB
               </Text>
@@ -122,7 +130,7 @@ const EditCar = () => {
                 {type &&
                   type.getTypes.map(({ id, name }, key) => {
                     let selected = "";
-                    if (id === data.type) {
+                    if (id === data.filterById[0].type) {
                       selected = "selected";
                     }
                     return (
@@ -144,11 +152,16 @@ const EditCar = () => {
           </Row>
           <Row style={{ width: "100%" }}>
             <Col xs={4}>Create At</Col>
-            <Col xs={5}>-</Col>
+            <Col xs={5}>
+              {!data.log[0].create_at ? "-" : data.log[0].create_at}
+            </Col>
           </Row>
           <Row style={{ width: "100%" }}>
             <Col xs={4}>Update At</Col>
-            <Col xs={5}>-</Col>
+            <Col xs={5}>
+              {" "}
+              {!data.log[0].update_at ? "-" : data.log[0].update_at}
+            </Col>
           </Row>
         </div>
         <div className={buttonForm}>

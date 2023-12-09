@@ -8,8 +8,10 @@ import Text from "../../Text";
 import Button from "../../Button";
 import { useState } from "react";
 
-function CardCars({ tittle, rentPerDay, id }) {
-  const [deleteCar, setDeleteCar] = useState(null);
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+function CardCars({ tittle, rentPerDay, id, updateAt, image }) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -19,28 +21,58 @@ function CardCars({ tittle, rentPerDay, id }) {
   };
 
   const handleOnDelete = ({ id }) => {
-    const API = "http://localhost:8000/cars/" + id;
-
-    fetch(API, {
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => {
-        res.json();
+    withReactContent(Swal)
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
       })
-      .then((results) => {
-        setDeleteCar(results);
-      });
+      .then((result) => {
+        if (result.isConfirmed) {
+          const API = "http://localhost:8000/cars/" + id;
 
-    console.log({ deleteCar });
+          fetch(API, {
+            method: "DELETE",
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }).then((res) => {
+            res.ok
+              ? withReactContent(Swal).fire(
+                  {
+                    position: "center",
+                    icon: "success",
+                    title: "Data Mobil Berhasil dihapus",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  },
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 1500)
+                )
+              : console.log("gagal");
+          });
+        }
+      });
   };
   return (
     <Card className={carsCard}>
-      <Card.Img variant="top" src="https://i.ibb.co/k5t0hKS/image-1.png" />
+      <Card.Img
+        variant="top"
+        src={
+          !image === "Image Not Found"
+            ? image
+            : "https://i.ibb.co/k5t0hKS/image-1.png"
+        }
+      />
       <Card.Body className={carsBody}>
-        <Text variant={3}>{tittle}</Text>
+        <Text variant={1} weight="bold">
+          {tittle}
+        </Text>
         <Text variant={3}>Rp. {rentPerDay} / hari</Text>
         <Row>
           <Col xs={1}>
@@ -86,7 +118,9 @@ function CardCars({ tittle, rentPerDay, id }) {
               />
             </svg>
           </Col>
-          <Col>Updated at 4 Apr 2022, 09.00</Col>
+          <Col>
+            <Text>Updated at {updateAt}</Text>
+          </Col>
         </Row>
         <Row>
           <Col>

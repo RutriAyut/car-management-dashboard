@@ -26,4 +26,8 @@ export default class UserCarService {
   async delete(param: userCarLoad) {
     return await this.#userCarRepository.delete(param);
   }
+
+  async getAll() {
+    return await this.#userCarRepository.getAll();
+  }
 }

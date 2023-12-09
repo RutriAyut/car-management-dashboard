@@ -3,6 +3,7 @@ import { CarTypeModel } from "../models/types";
 import CarService from "../services/carService";
 import UploadOnline from "../middleware/uploadOnline";
 import UserCarService from "../services/userCarService";
+import TypeService from "../services/typeService";
 
 interface userCarLoad {
   id: number;
@@ -13,7 +14,9 @@ interface userCarLoad {
 const get = async (req: Request, res: Response) => {
   try {
     const getCars = await new CarService().getAll();
-    return res.status(200).json({ getCars });
+    const getTypes = await new TypeService().getAll();
+    const getLogs = await new UserCarService().getAll();
+    return res.status(200).json({ getCars, getTypes, getLogs });
   } catch (error) {
     res.status(404).json({ message: "Error : No Data Found" });
   }
@@ -35,7 +38,10 @@ const getById = async (req: Request, res: Response) => {
 
   try {
     let filterById = await new CarService().getById(id);
-    res.status(200).json({ filterById });
+    if (filterById) {
+      let log = await new UserCarService().getById(id);
+      res.status(200).json({ filterById, log });
+    }
   } catch (error) {
     res.status(404).json({ message: "Cars By id " + id + " not found" });
   }

@@ -11,37 +11,39 @@ import Card from "../Cards/CarsMain";
 import { carsBox, searchBox, searchContainer } from "./style";
 import { useEffect, useState } from "react";
 
-const API =
-  "https://raw.githubusercontent.com/fnurhidayat/probable-garbanzo/main/data/cars.min.json";
+const API = "http://localhost:8000/cars";
 
 function waktu() {
   const arr = [];
   for (let i = 0; i < 24; i++) {
     if (i < 10) {
-      arr.push(<option value={i}>0{i}.00</option>);
+      arr.push(<option value={"T0" + i + ":00:00.000Z"}>0{i}.00</option>);
     } else {
-      arr.push(<option value={i}>{i}.00</option>);
+      arr.push(<option value={"T" + i + ":00:00.000Z"}>{i}.00</option>);
     }
   }
   return arr;
   h;
 }
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+// function getRandomInt(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
-function getRandomBoolean() {
-  return Math.random() < 0.7;
-}
+// function getRandomBoolean() {
+//   return Math.random() < 0.7;
+// }
 
 const SearchForm = () => {
   //To get data cars
   const [loading, setloading] = useState(false);
   const [data, setData] = useState(null);
+  const [types, setType] = useState(null);
   const [temp, setTemp] = useState(null);
+
+  console.log({ data });
 
   useEffect(() => {
     setloading(true);
@@ -49,24 +51,27 @@ const SearchForm = () => {
       fetch(API)
         .then((res) => res.json())
         .then((results) => {
-          const newResults = results.map((car) => {
-            const driver = getRandomBoolean();
+          // const newResults = results.map((car) => {
+          //   const driver = getRandomBoolean();
 
-            //Random value for availableAt karena kalau tidak maka data yang didapat availablenya pada tanggal aplikasi dijalankan
-            const isPositive = getRandomInt(0, 1) === 1;
-            const timeAt = new Date();
-            const mutator = getRandomInt(1000000, 100000000);
-            const availableAt = new Date(
-              timeAt.getTime() + (isPositive ? mutator : 1 * mutator)
-            );
-            return {
-              ...car,
-              availableAt,
-              driver,
-            };
-          });
-          setData(newResults);
-          setTemp(newResults);
+          //   //Random value for availableAt karena kalau tidak maka data yang didapat availablenya pada tanggal aplikasi dijalankan
+          //   const isPositive = getRandomInt(0, 1) === 1;
+          //   const timeAt = new Date();
+          //   const mutator = getRandomInt(1000000, 100000000);
+          //   const availableAt = new Date(
+          //     timeAt.getTime() + (isPositive ? mutator : 1 * mutator)
+          //   );
+          //   return {
+          //     ...car,
+          //     availableAt,
+          //     driver,
+          //   };
+          // });
+          // setData(newResults);
+          // setTemp(newResults);
+          setData(results.getCars);
+          setTemp(results.getCars);
+          setType(results.getTypes);
           setloading(false);
         });
     }
@@ -78,28 +83,28 @@ const SearchForm = () => {
 
     const driver = e.target.driver.value;
     const number = e.target.passanger.value;
-    const date = new Date(e.target.date.value);
-    date.setHours(e.target.time.value);
-
-    console.log({ driver, date, number });
+    const date = e.target.date.value;
+    const time = e.target.time.value;
+    const datetime = date + time;
 
     if (number) {
       const dataCar = temp.filter(
         (val) =>
           val.passanger >= number &&
-          val.driver === JSON.parse(driver) &&
+          val.available_at >= datetime &&
           val.available === true &&
-          val.availableAt >= date
+          val.driver === JSON.parse(driver)
       );
+      setData(dataCar);
+    } else {
+      const dataCar = temp.filter(
+        (val) =>
+          val.available_at >= datetime &&
+          val.available === true &&
+          val.driver === JSON.parse(driver)
+      );
+      setData(dataCar);
     }
-    const dataCar = temp.filter(
-      (val) =>
-        val.driver === JSON.parse(driver) &&
-        val.available === true &&
-        val.availableAt >= date
-    );
-
-    setData(dataCar);
   };
 
   //Html
@@ -147,8 +152,6 @@ const SearchForm = () => {
                   manufacture,
                   model,
                   type,
-                  image,
-                  availableAt,
                   rentPerDay,
                   description,
                   capacity,
@@ -157,11 +160,12 @@ const SearchForm = () => {
                 },
                 key
               ) => {
+                const getType = types.filter((val) => val.id === type)[0].name;
                 return (
                   <Col key={key}>
                     <Card
                       id={id}
-                      tittle={manufacture + " " + model + " / " + type}
+                      tittle={manufacture + " " + model + " / " + getType}
                       rentPerDay={rentPerDay}
                       description={description}
                       capacity={capacity}
