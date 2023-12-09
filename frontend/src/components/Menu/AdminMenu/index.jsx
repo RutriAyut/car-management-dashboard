@@ -8,9 +8,42 @@ import Input from "../../Input";
 import Button from "../../Button";
 
 import { navLink } from "../style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function AdminMenu() {
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    withReactContent(Swal)
+      .fire({
+        title: "You want to Logout?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem("token");
+          withReactContent(Swal).fire(
+            {
+              position: "center",
+              icon: "success",
+              title: "Berhasil Logout",
+              showConfirmButton: false,
+              timer: 1500,
+            },
+            setTimeout(() => {
+              navigate("/");
+            }, 1500)
+          );
+        }
+      });
+  };
+
   return (
     <Navbar expand="sm" className="topBg">
       <Container>
@@ -23,7 +56,7 @@ function AdminMenu() {
             <Input />
             <Button variant={4}>Search</Button>
             <NavDropdown title="User" id="basic-nav-dropdown">
-              <Link to="logout" className={navLink}>
+              <Link onClick={handleLogOut} className={navLink}>
                 Logout
               </Link>
             </NavDropdown>

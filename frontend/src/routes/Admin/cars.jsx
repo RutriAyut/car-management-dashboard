@@ -83,11 +83,7 @@ function Cars() {
       <Row style={{ gap: "10px" }}>
         {data &&
           data.getCars.map(
-            (
-              { id, manufacture, model, type, image, rent_per_day },
-              // { id, name, rent_per_day, image },
-              key
-            ) => {
+            ({ id, manufacture, model, type, image, rent_per_day }, key) => {
               const getType = data.getTypes.filter((val) => val.id === type)[0]
                 .name;
               const create = data.getLogs.filter((val) => val.id === id)[0]
