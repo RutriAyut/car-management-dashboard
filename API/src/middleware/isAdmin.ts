@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import UserService from "../services/userService";
 
 const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
   if (req.body.user) {

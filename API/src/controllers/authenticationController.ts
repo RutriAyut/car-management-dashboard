@@ -49,9 +49,9 @@ const signin = async (req: Request, res: Response) => {
   const roleObj = await new RoleService().getById(role.role_id);
   if (roleObj) {
     const roleName = roleObj.name;
-    console.log({ roleObj, roleName });
     return res.status(200).json({
       message: `Successfully Logged In ${roleName}`,
+      roleName,
       token,
     });
   }
