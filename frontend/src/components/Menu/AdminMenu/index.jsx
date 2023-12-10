@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 function AdminMenu() {
+  const username = localStorage.getItem("username");
   const navigate = useNavigate();
   const handleLogOut = () => {
     withReactContent(Swal)
@@ -55,7 +56,7 @@ function AdminMenu() {
           <Nav className="align-items-center">
             <Input />
             <Button variant={4}>Search</Button>
-            <NavDropdown title="User" id="basic-nav-dropdown">
+            <NavDropdown title={username} id="basic-nav-dropdown">
               <Link onClick={handleLogOut} className={navLink}>
                 Logout
               </Link>

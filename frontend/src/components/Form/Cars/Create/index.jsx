@@ -12,6 +12,8 @@ import Select from "../../../Select";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import FormBox from "../FormBox";
+import FormItem from "../FormItem";
 
 const CreateCar = () => {
   const navigate = useNavigate();
@@ -146,26 +148,26 @@ const CreateCar = () => {
 
   return (
     <form onSubmit={handleOnSave}>
-      <div className={formBox} style={{ width: "100%" }}>
-        <Row style={{ width: "100%" }}>
+      <FormBox level="100%">
+        <FormItem>
           <Col xs={4}>Manufacture*</Col>
           <Col xs={5}>
             <Input id="manufacture" type="text" />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Model*</Col>
           <Col xs={5}>
             <Input id="model" type="text" />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Harga*</Col>
           <Col xs={5}>
             <Input id="price" type="text" />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Foto*</Col>
           <Col xs={5}>
             <Input id="foto" type="file" />
@@ -173,8 +175,8 @@ const CreateCar = () => {
               File size max. 2MB
             </Text>
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Tipe*</Col>
           <Col xs={5}>
             <Select id="type" required="required">
@@ -188,32 +190,32 @@ const CreateCar = () => {
                 })}
             </Select>
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Capacity*</Col>
           <Col xs={5}>
             <Input id="capacity" type="text" />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Transmission*</Col>
           <Col xs={5}>
             <Input type="text" id="transmission" />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Description*</Col>
           <Col xs={5}>
             <Form.Control as="textarea" rows={3} id="description" />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Available At*</Col>
           <Col xs={5}>
             <Input type="date" id="availableAt" />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Available</Col>
           <Col xs={5}>
             <Form.Check // prettier-ignore
@@ -222,8 +224,8 @@ const CreateCar = () => {
               onChange={handleOnChange}
             />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Driver</Col>
           <Col xs={5}>
             <Form.Check // prettier-ignore
@@ -232,24 +234,24 @@ const CreateCar = () => {
               onChange={handleOnDriver}
             />
           </Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Start Rent</Col>
           <Col xs={5}>-</Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Finish Rent</Col>
           <Col xs={5}>-</Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Create At</Col>
           <Col xs={5}>-</Col>
-        </Row>
-        <Row style={{ width: "100%" }}>
+        </FormItem>
+        <FormItem>
           <Col xs={4}>Update At</Col>
           <Col xs={5}>-</Col>
-        </Row>
-      </div>
+        </FormItem>
+      </FormBox>
       <div className={buttonForm}>
         <Button variant={4} onClick={handleOnCancel}>
           Cancel

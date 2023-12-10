@@ -177,7 +177,7 @@ const SearchForm = () => {
                 );
               }
             )}
-          {data.length === 0 ? (
+          {data && data.length === 0 ? (
             <Text variant={3}>Mobil tidak ditemukan</Text>
           ) : (
             console.log("ada")

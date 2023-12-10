@@ -91,8 +91,6 @@ function Cars() {
               const update = data.getLogs.filter((val) => val.id === id)[0]
                 .update_at;
 
-              console.log({ update, create });
-
               return (
                 <Col key={key}>
                   <CardCars

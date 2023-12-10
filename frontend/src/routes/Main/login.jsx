@@ -49,6 +49,7 @@ const Login = () => {
           setError(false);
           setMessage(result.message);
           localStorage.setItem("token", result.token);
+          localStorage.setItem("username", result.roleName);
         })
         .catch((err) => {
           setError(true);
