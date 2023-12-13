@@ -153,7 +153,7 @@ const SearchForm = () => {
                   manufacture,
                   model,
                   type,
-                  rentPerDay,
+                  rent_per_day,
                   description,
                   capacity,
                   transmission,
@@ -167,7 +167,7 @@ const SearchForm = () => {
                     <Card
                       id={id}
                       tittle={manufacture + " " + model + " / " + getType}
-                      rentPerDay={rentPerDay}
+                      rentPerDay={rent_per_day}
                       description={description}
                       capacity={capacity}
                       transmission={transmission}
