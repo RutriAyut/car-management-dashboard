@@ -11,6 +11,8 @@ import Text from "../../components/Text";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
+import { useGoogleLogin } from "@react-oauth/google";
+
 const Login = () => {
   const API = "http://localhost:8000/user/signin";
   const [error, setError] = useState(null);
@@ -70,6 +72,14 @@ const Login = () => {
     await post({ email, password });
   };
 
+  const login = useGoogleLogin({
+    onSuccess: (tokenResp) => console.log({ tokenResp }),
+  });
+
+  const handleLogin = () => {
+    login();
+  };
+
   return (
     <Container bsPrefix={loginBox}>
       <Row>
@@ -104,6 +114,20 @@ const Login = () => {
               </Button>
             </Row>
           </form>
+          <div className="justify-content-center">
+            <Button onClick={handleLogin} variant={4}>
+              Sign In With Google
+            </Button>
+            {/* <GoogleLogin
+              useOneTap
+              onSuccess={(credentialResponse) => {
+                console.log({ credentialResponse });
+              }}
+              onError={(errorCredentialResponse) => {
+                console.log({ errorCredentialResponse });
+              }}
+            /> */}
+          </div>
         </Col>
       </Row>
     </Container>

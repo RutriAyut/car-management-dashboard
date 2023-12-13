@@ -6,9 +6,16 @@ Aplikasi web CRUD menggunakan express.js dan typescript untuk management data mo
 
 nama : db_car_rental
 
+## Port
+
 Server app berjalan di port 8000 `http://localhost:8000/`
 
 Frontend app berjalan di port 5173 `http://localhost:5173/`
+
+Ada 2 versi frontend yang dibuat
+
+- folder frontend menggunakan javascript
+- folder frontendts menggunakan Typescript
 
 ## Frontend Routing
 
