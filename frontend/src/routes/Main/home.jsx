@@ -10,7 +10,7 @@ import Faq from "../../components/Faq";
 
 const Home = () => {
   const navigate = useNavigate();
-  const handleOnSewa = (e) => {
+  const handleOnSewa = () => {
     navigate("/search");
   };
 

@@ -31,7 +31,7 @@ function Cars() {
 
   const navigate = useNavigate();
 
-  const handleOnClick = (e) => {
+  const handleOnClick = () => {
     navigate("/admin/cars/create");
   };
 
@@ -62,16 +62,16 @@ function Cars() {
                 <path
                   d="M9 3.75V14.25"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M3.75 9H14.25"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
               Add New Car

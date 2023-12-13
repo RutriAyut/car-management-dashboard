@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import CustomBreadcrumb from "../../components/Breadcrumb";
 import Text from "../../components/Text";

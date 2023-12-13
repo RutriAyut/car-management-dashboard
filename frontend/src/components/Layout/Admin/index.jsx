@@ -1,3 +1,4 @@
+import { node } from "prop-types";
 import AdminMenu from "../../Menu/AdminMenu";
 import LeftMenu from "../../Menu/LeftMenu";
 import RightMenu from "../../Menu/RightMenu";
@@ -15,6 +16,10 @@ const LayoutAdmin = ({ children }) => {
       </div>
     </div>
   );
+};
+
+LayoutAdmin.propTypes = {
+  children: node.isRequired,
 };
 
 export default LayoutAdmin;

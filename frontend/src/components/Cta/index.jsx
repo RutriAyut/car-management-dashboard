@@ -5,7 +5,7 @@ import { ctaBg, ctaBtn, ctaParagraf } from "./style";
 
 const Cta = () => {
   const navigate = useNavigate();
-  const handleOnSewa = (e) => {
+  const handleOnSewa = () => {
     navigate("/search");
   };
 

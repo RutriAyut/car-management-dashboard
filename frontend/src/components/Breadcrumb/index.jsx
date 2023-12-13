@@ -4,9 +4,9 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 function CustomBreadcrumb({ link }) {
   return (
     <Breadcrumb>
-      {link.map((result) => {
+      {link.map((result, key) => {
         return (
-          <Breadcrumb.Item href={result.link} active={result.active}>
+          <Breadcrumb.Item key={key} href={result.link} active={result.active}>
             {result.name}
           </Breadcrumb.Item>
         );

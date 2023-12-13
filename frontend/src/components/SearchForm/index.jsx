@@ -23,7 +23,6 @@ function waktu() {
     }
   }
   return arr;
-  h;
 }
 
 // function getRandomInt(min, max) {

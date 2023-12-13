@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { buttonForm, formBox } from "../style";
+import { buttonForm } from "../style";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
@@ -19,7 +18,7 @@ import FormItem from "../FormItem";
 const EditCar = () => {
   const navigate = useNavigate();
 
-  const handleOnCancel = (e) => {
+  const handleOnCancel = () => {
     navigate("/admin/cars/");
   };
 
@@ -56,9 +55,6 @@ const EditCar = () => {
         });
     }
   }, [data]);
-
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null);
 
   const handleOnChange = () => {
     setAvailable(!available);

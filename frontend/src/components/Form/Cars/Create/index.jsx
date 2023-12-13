@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { buttonForm, formBox } from "../style";
+import { buttonForm } from "../style";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
 
@@ -17,7 +16,7 @@ import FormItem from "../FormItem";
 
 const CreateCar = () => {
   const navigate = useNavigate();
-  const handleOnCancel = (e) => {
+  const handleOnCancel = () => {
     navigate("/admin/cars/");
   };
 
@@ -183,7 +182,7 @@ const CreateCar = () => {
               {type &&
                 type.getTypes.map(({ id, name }, key) => {
                   return (
-                    <option id={key} value={id}>
+                    <option key={key} id={key} value={id}>
                       {name}
                     </option>
                   );
