@@ -41,6 +41,8 @@ const SearchForm = () => {
   const [types, setType] = useState<DataTypes>([]);
   const [temp, setTemp] = useState<DataCars>([]);
 
+  console.log({ data });
+
   useEffect(() => {
     setloading(true);
     if (data.length === 0) {
@@ -56,14 +58,21 @@ const SearchForm = () => {
     setloading(false);
   }, [data]);
 
-  const handleOnSearch = async (e: any) => {
+  const handleOnSearch = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const target = e.target as typeof e.target & {
+      driver: { value: string };
+      passanger: { value: number };
+      date: { value: string };
+      time: { value: string };
+    };
 
-    const driver = e.target.driver.value;
-    const number = e.target.passanger.value;
-    const date = e.target.date.value;
-    const time = e.target.time.value;
+    const driver = target.driver.value;
+    const number = target.passanger.value;
+    const date = target.date.value;
+    const time = target.time.value;
     const datetime = date + time;
+    const driverBoo = driver === "true" ? true : false;
 
     if (number) {
       const dataCar = temp.filter(
@@ -71,7 +80,7 @@ const SearchForm = () => {
           val.capacity >= number &&
           val.available_at >= datetime &&
           val.available === true &&
-          val.driver === JSON.parse(driver)
+          val.driver === driverBoo
       );
       setData(dataCar);
     } else {
@@ -79,7 +88,7 @@ const SearchForm = () => {
         (val) =>
           val.available_at >= datetime &&
           val.available === true &&
-          val.driver === JSON.parse(driver)
+          val.driver === driverBoo
       );
       setData(dataCar);
     }

@@ -54,7 +54,7 @@ export type InputProps = {
   id: string;
   placeholder: string;
   required: string;
-  value: any;
+  value: string | number;
 };
 
 export type SelectProps = {

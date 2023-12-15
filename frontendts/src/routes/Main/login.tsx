@@ -15,9 +15,9 @@ import { PostLogin } from "../../components/Props";
 
 const Login = () => {
   const API = "http://localhost:8000/user/signin";
-  const [error, setError] = useState<Boolean>(false);
-  const [message, setMessage] = useState<String>("");
-  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -57,17 +57,20 @@ const Login = () => {
           setError(true);
           setMessage(err.message);
         });
-    } catch (error: any) {
+    } catch (error) {
       setError(true);
-      setMessage(error);
     }
   };
 
-  const handleOnSubmit = async (e: any) => {
+  const handleOnSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const target = e.target as typeof e.target & {
+      email: { value: string };
+      password: { value: string };
+    };
 
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    const email = target.email.value;
+    const password = target.password.value;
 
     await post({ email, password });
   };

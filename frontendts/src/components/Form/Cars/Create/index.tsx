@@ -72,28 +72,26 @@ const CreateCar = () => {
         },
       })
         .then((res) => {
-          res.ok
-            ? withReactContent(Swal)
-                .fire({
-                  position: "center",
-                  icon: "success",
-                  title: "Data Mobil Berhasil disimpan",
-                  showConfirmButton: false,
-                  timer: 1500,
-                })
-                .then(() => {
-                  navigate("/admin/cars");
-                })
-            : console.log("gagal");
-          res.status === 400
-            ? withReactContent(Swal).fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
+          res.ok &&
+            withReactContent(Swal)
+              .fire({
+                position: "center",
+                icon: "success",
+                title: "Data Mobil Berhasil disimpan",
                 showConfirmButton: false,
                 timer: 1500,
               })
-            : console.log("error");
+              .then(() => {
+                navigate("/admin/cars");
+              });
+          res.status === 400 &&
+            withReactContent(Swal).fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
         })
         .catch((errr) => {
           console.log({ errr });
@@ -113,18 +111,29 @@ const CreateCar = () => {
     setDriver(!driver);
   };
 
-  const handleOnSave = async (e: any) => {
+  const handleOnSave = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const target = e.target as typeof e.target & {
+      manufacture: { value: string };
+      model: { value: string };
+      price: { value: number };
+      foto: { value: string };
+      type: { value: number };
+      capacity: { value: number };
+      transmission: { value: string };
+      description: { value: string };
+      availableAt: { value: string };
+    };
 
-    const manufacture = e.target.manufacture.value;
-    const model = e.target.model.value;
-    const rent = e.target.price.value;
-    const picture = e.target.foto.files[0];
-    const type = e.target.type.value;
-    const capacity = e.target.capacity.value;
-    const transmission = e.target.transmission.value;
-    const description = e.target.description.value;
-    const availableAt = e.target.availableAt.value;
+    const manufacture = target.manufacture.value;
+    const model = target.model.value;
+    const rent = target.price.value;
+    const picture = target.foto.value;
+    const type = target.type.value;
+    const capacity = target.capacity.value;
+    const transmission = target.transmission.value;
+    const description = target.description.value;
+    const availableAt = target.availableAt.value;
 
     // const picture = new FormData();
 
