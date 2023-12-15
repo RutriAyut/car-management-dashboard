@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export type StyParagrafProps = {
   weight: string;
@@ -34,7 +34,7 @@ export interface ChildrenProps {
 }
 
 export type ButtonProps = {
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   color: string;
   children: React.ReactNode;
   onClick(): any;

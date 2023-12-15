@@ -1,3 +1,3 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
-export const Levelwidth = createContext("50%");
+export const Levelwidth = createContext('50%');
