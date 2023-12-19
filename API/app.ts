@@ -1,71 +1,71 @@
-import express, { Express } from "express";
-import knex from "knex";
-import { Model } from "objection";
-import handleLogger from "./src/middleware/handleLogger";
+/* eslint-disable @typescript-eslint/no-var-requires */
+import express, { Express } from 'express';
+import knex from 'knex';
+import { Model } from 'objection';
 
-const cors = require("cors");
-const YAML = require("yamljs");
-const swaggerUI = require("swagger-ui-express");
+const cors = require('cors');
+const YAML = require('yamljs');
+const swaggerUI = require('swagger-ui-express');
 
-const carRouter = require("./src/routes/carRouter");
-const authenticationRouter = require("./src/routes/authenticationRouter");
-const userRouter = require("./src/routes/userRouter");
-const typeRouter = require("./src/routes/typeRouter");
+const carRouter = require('./src/routes/carRouter');
+const authenticationRouter = require('./src/routes/authenticationRouter');
+const userRouter = require('./src/routes/userRouter');
+const typeRouter = require('./src/routes/typeRouter');
 
-const swaggerDocument = YAML.load("openAPI.yaml");
+const swaggerDocument = YAML.load('openAPI.yaml');
 const knexInstance = knex({
-  client: "postgresql",
-  connection: {
-    database: "db_car_rental",
-    user: "rutri",
-    password: "rutri",
-    // filename: "./dev.sqlite3"
-  },
+	client: 'postgresql',
+	connection: {
+		database: 'db_car_rental',
+		user: 'rutri',
+		password: 'rutri',
+		// filename: "./dev.sqlite3"
+	},
 });
 
 Model.knex(knexInstance);
 
 class Applicaction {
-  app: Express = express();
+	app: Express = express();
 
-  constructor() {
-    this.app = express();
-    this.settings();
-    this.middlewares();
-    this.routes();
-  }
+	constructor() {
+		this.app = express();
+		this.settings();
+		this.middlewares();
+		this.routes();
+	}
 
-  settings() {
-    this.app.set("port", 8000);
-  }
+	settings() {
+		this.app.set('port', 8000);
+	}
 
-  middlewares() {
-    this.app.set("view engine", "ejs");
-    this.app.set("views", "./src/views");
-    this.app.use(express.static("public"));
-    this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(express.json());
-    this.app.use(cors());
-    // this.app.use(handleLogger);
-  }
+	middlewares() {
+		this.app.set('view engine', 'ejs');
+		this.app.set('views', './src/views');
+		this.app.use(express.static('public'));
+		this.app.use(express.urlencoded({ extended: true }));
+		this.app.use(express.json());
+		this.app.use(cors());
+		// this.app.use(handleLogger);
+	}
 
-  routes() {
-    this.app.use(
-      "/api-docs",
-      swaggerUI.serve,
-      swaggerUI.setup(swaggerDocument)
-    );
-    this.app.use("/cars", carRouter);
-    this.app.use("/user", authenticationRouter); // kebutuhan login dan register
-    this.app.use("/manage", userRouter); // segala sesuatu yang berhubungan dengan users
-    this.app.use("/type", typeRouter);
-  }
+	routes() {
+		this.app.use(
+			'/api-docs',
+			swaggerUI.serve,
+			swaggerUI.setup(swaggerDocument)
+		);
+		this.app.use('/cars', carRouter);
+		this.app.use('/user', authenticationRouter); // kebutuhan login dan register
+		this.app.use('/manage', userRouter); // segala sesuatu yang berhubungan dengan users
+		this.app.use('/type', typeRouter);
+	}
 
-  start(): void {
-    this.app.listen(this.app.get("port"), () => {
-      console.log(">>> Server is running at port : ", this.app.get("port"));
-    });
-  }
+	start(): void {
+		this.app.listen(this.app.get('port'), () => {
+			console.log('>>> Server is running at port : ', this.app.get('port'));
+		});
+	}
 }
 
 export default Applicaction;

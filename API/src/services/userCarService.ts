@@ -1,4 +1,4 @@
-import UserCarRepository from "../repositories/userCarRepository";
+import UserCarRepository from '../repositories/userCarRepository';
 
 interface userCarLoad {
   id: number;
@@ -6,28 +6,28 @@ interface userCarLoad {
 }
 
 export default class UserCarService {
-  #userCarRepository: UserCarRepository;
-  constructor() {
-    this.#userCarRepository = new UserCarRepository();
-  }
+	#userCarRepository: UserCarRepository;
+	constructor() {
+		this.#userCarRepository = new UserCarRepository();
+	}
 
-  async post(param: userCarLoad) {
-    return await this.#userCarRepository.post(param);
-  }
+	async post(param: userCarLoad) {
+		return await this.#userCarRepository.post(param);
+	}
 
-  async put(param: userCarLoad) {
-    return await this.#userCarRepository.put(param);
-  }
+	async put(param: userCarLoad) {
+		return await this.#userCarRepository.put(param);
+	}
 
-  async getById(id: number) {
-    return await this.#userCarRepository.getById(id);
-  }
+	async getById(id: number) {
+		return await this.#userCarRepository.getById(id);
+	}
 
-  async delete(param: userCarLoad) {
-    return await this.#userCarRepository.delete(param);
-  }
+	async delete(param: userCarLoad) {
+		return await this.#userCarRepository.delete(param);
+	}
 
-  async getAll() {
-    return await this.#userCarRepository.getAll();
-  }
+	async getAll() {
+		return await this.#userCarRepository.getAll();
+	}
 }

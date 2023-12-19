@@ -1,12 +1,12 @@
-import RoleRepository from "./../repositories/roleRepository";
+import RoleRepository from './../repositories/roleRepository';
 export default class RoleService {
-  #roleRepository: RoleRepository;
+	#roleRepository: RoleRepository;
 
-  constructor() {
-    this.#roleRepository = new RoleRepository();
-  }
+	constructor() {
+		this.#roleRepository = new RoleRepository();
+	}
 
-  async getById(id: number) {
-    return await this.#roleRepository.getById(id);
-  }
+	async getById(id: number) {
+		return await this.#roleRepository.getById(id);
+	}
 }

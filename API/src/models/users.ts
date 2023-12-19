@@ -1,13 +1,13 @@
-import { Model, ModelObject } from "objection";
+import { Model, ModelObject } from 'objection';
 
 export class UsersModel extends Model {
-  id!: number;
-  email!: string;
-  password!: string;
+	id!: number;
+	email!: string;
+	password!: string;
 
-  static get tableName() {
-    return "users";
-  }
+	static get tableName() {
+		return 'users';
+	}
 }
 
 export type users = ModelObject<UsersModel>;
