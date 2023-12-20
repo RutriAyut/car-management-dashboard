@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { styButton } from './style';
 import { ButtonProps } from '../Props';
@@ -17,6 +16,7 @@ const CustomBtn = ({
 	case 1:
 		return (
 			<Button
+				data-testid="buttonId1"
 				variant=""
 				bsPrefix={styButton({ bgcolor, color, border, width })}
 				onClick={onClick}
@@ -28,6 +28,7 @@ const CustomBtn = ({
 	case 2:
 		return (
 			<Button
+				data-testid="buttonId2"
 				variant=""
 				bsPrefix={styButton({
 					bgcolor: 'white',
@@ -45,6 +46,7 @@ const CustomBtn = ({
 	case 3:
 		return (
 			<Button
+				data-testid="buttonId3"
 				variant=""
 				bsPrefix={styButton({ bgcolor: 'darkBlue', color, border, width })}
 				onClick={onClick}
@@ -57,6 +59,7 @@ const CustomBtn = ({
 	case 4:
 		return (
 			<Button
+				data-testid="buttonId4"
 				variant=""
 				bsPrefix={styButton({
 					bgcolor: 'white',

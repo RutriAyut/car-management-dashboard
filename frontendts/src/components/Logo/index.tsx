@@ -1,7 +1,6 @@
-import React from 'react';
-import './style.js';
-import { styLogo, styLogoAdmin } from './style.js';
-import { LogoProps } from '../Props/index.js';
+import './style.ts';
+import { styLogo, styLogoAdmin } from './style.ts';
+import { LogoProps } from '../Props/index.ts';
 
 const Logo = ({ color, variant }: LogoProps) => {
 	switch (variant) {

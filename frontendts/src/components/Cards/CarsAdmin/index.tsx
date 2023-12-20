@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
@@ -128,7 +127,7 @@ function CardCars({ tittle, rentPerDay, id, updateAt, image }: CarsAdminProps) {
 						</Button>
 					</Col>
 					<Col>
-						<Button onClick={() => handleOnClick(id)} width="100%">
+						<Button data-testid="buttonEdit" onClick={() => handleOnClick(id)} width="100%">
               Edit
 						</Button>
 					</Col>

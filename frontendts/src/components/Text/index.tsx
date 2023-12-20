@@ -1,4 +1,3 @@
-import React from 'react';
 import { styParagraf } from './style';
 import { TextProps } from '../Props';
 
