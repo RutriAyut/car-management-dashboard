@@ -5,9 +5,9 @@ const get = async (req: Request, res: Response) => {
 	console.log('hello');
 	try {
 		const getTypes = await new TypeService().getAll();
-		res.status(200).json({ getTypes });
+		return res.status(200).json({ getTypes });
 	} catch (error) {
-		res.status(404).json({ message: 'Error : No Data Found' });
+		return res.status(404).json({ message: 'Error : No Data Found' });
 	}
 };
 

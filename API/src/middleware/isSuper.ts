@@ -6,7 +6,7 @@ const isSuper = async (req: Request, res: Response, next: NextFunction) => {
 		if (user[0].name === 'SUPER') {
 			next();
 		} else {
-			res.status(401).json({
+			return res.status(401).json({
 				message: 'Unauthorized',
 			});
 		}

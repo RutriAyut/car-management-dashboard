@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import express, { Express } from 'express';
 import knex from 'knex';
 import { Model } from 'objection';
@@ -25,47 +24,32 @@ const knexInstance = knex({
 
 Model.knex(knexInstance);
 
-class Applicaction {
-	app: Express = express();
+export const app: Express = express();
+// const PORT: number = 8000;
 
-	constructor() {
-		this.app = express();
-		this.settings();
-		this.middlewares();
-		this.routes();
-	}
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
 
-	settings() {
-		this.app.set('port', 8000);
-	}
+// set routing
+app.use(
+	'/api-docs',
+	swaggerUI.serve,
+	swaggerUI.setup(swaggerDocument)
+);
+app.use('/cars', carRouter);
+app.use('/user', authenticationRouter); // kebutuhan login dan register
+app.use('/manage', userRouter); // segala sesuatu yang berhubungan dengan users
+app.use('/type', typeRouter);
 
-	middlewares() {
-		this.app.set('view engine', 'ejs');
-		this.app.set('views', './src/views');
-		this.app.use(express.static('public'));
-		this.app.use(express.urlencoded({ extended: true }));
-		this.app.use(express.json());
-		this.app.use(cors());
-		// this.app.use(handleLogger);
-	}
+//listen port
+// const server = app.listen(PORT, () => {
+// 	console.log(`Express nyala di http://localhost:${PORT}`);
+// });
 
-	routes() {
-		this.app.use(
-			'/api-docs',
-			swaggerUI.serve,
-			swaggerUI.setup(swaggerDocument)
-		);
-		this.app.use('/cars', carRouter);
-		this.app.use('/user', authenticationRouter); // kebutuhan login dan register
-		this.app.use('/manage', userRouter); // segala sesuatu yang berhubungan dengan users
-		this.app.use('/type', typeRouter);
-	}
+// import App from './app';
+// const app = new App();
+// const server = app.start();
 
-	start(): void {
-		this.app.listen(this.app.get('port'), () => {
-			console.log('>>> Server is running at port : ', this.app.get('port'));
-		});
-	}
-}
-
-export default Applicaction;
+// export default app;
+module.exports = app;

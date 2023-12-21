@@ -12,4 +12,5 @@ export default {
 		'\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__ mocks __/fileMock.js',
 		'\\.(css)$': 'identity-obj-proxy'
 	},
+	collectCoverage: true,
 };

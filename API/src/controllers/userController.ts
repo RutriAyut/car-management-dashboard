@@ -19,10 +19,9 @@ const update = async (req: Request, res: Response) => {
 		const updateUserRole = await new UserRoleService().updateToAdmin(id);
 		if(updateUserRole){
 			const getUsers = await new UserService().getById(id);
-			res.status(200).json({ getUsers });}
+			return res.status(200).json({ getUsers });}
 	} catch (err) {
-		res.status(404).json({ massage: 'Erorr : No User was found' });
-		console.log(err);
+		return res.status(404).json({ massage: 'Erorr : No User was found' });
 	}
 
 };
@@ -32,10 +31,9 @@ const getById = async (req: Request, res: Response) => {
 	const user = req.body.user;
 	try {
 		const getUsers = await new UserService().getById(user[0].id);
-		res.status(200).json({ getUsers });
+		return res.status(200).json({ getUsers });
 	} catch (error) {
-		res.status(404).json('Erorr : ' + error);
-		console.log(error);
+		return res.status(404).json('Erorr : ' + error);
 	}
 };
 

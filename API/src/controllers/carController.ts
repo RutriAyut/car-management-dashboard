@@ -14,16 +14,16 @@ const get = async (req: Request, res: Response) => {
 		const getLogs = await new UserCarService().getAll();
 		return res.status(200).json({ getCars, getTypes, getLogs });
 	} catch (error) {
-		res.status(404).json({ message: 'Error : No Data Found' });
+		return res.status(404).json({ message: 'Error : No Data Found' });
 	}
 };
 
 const getAllSuper = async (req: Request, res: Response) => {
 	try {
 		const getCars = await new CarService().getAllSuper();
-		res.status(200).json({ getCars });
+		return res.status(200).json({ getCars });
 	} catch (error) {
-		res.status(404).json('Erorr : No Data Found');
+		return res.status(404).json('Erorr : No Data Found');
 		console.log(error);
 	}
 };
@@ -36,59 +36,61 @@ const getById = async (req: Request, res: Response) => {
 		const filterById = await new CarService().getById(id);
 		if (filterById) {
 			const log = await new UserCarService().getById(id);
-			res.status(200).json({ filterById, log });
+			return res.status(200).json({ filterById, log });
 		}
 	} catch (error) {
-		res.status(404).json({ message: 'Cars By id ' + id + ' not found' });
+		return res.status(404).json({ message: 'Cars By id ' + id + ' not found' });
 	}
 };
 
 const getByIdSuper = async (req: Request, res: Response) => {
 	const id = Number(req.params.id);
-
+	console.log('super admin');
 	try {
 		const filterById = await new CarService().getByIdSuper(id);
 		if (filterById) {
 			const log = await new UserCarService().getById(id);
-			res.status(200).json({ filterById, log });
+			return res.status(200).json({ filterById, log });
 		} else {
-			res.status(404).json({ message: 'Cars By id ' + id + ' not found' });
+			return res.status(404).json({ message: 'Cars By id ' + id + ' not found' });
 		}
 	} catch (error) {
-		res.status(404).json({ message: 'Cars By id ' + id + ' not found' });
+		return res.status(404).json({ message: 'Cars By id ' + id + ' not found' });
 	}
 };
 
 const beforeAdd = async (req: Request, res: Response) => {
 	const getTypes = (await CarTypeModel.query()) || [];
-	res.status(201).render('create', { types: getTypes });
+	return res.status(201).render('create', { types: getTypes });
 };
 
 // create car
 const post = async (req: Request, res: Response) => {
+	console.log('super admin');
 	const reqBody: any = req.body;
 	const manufacture = req.body.manufacture;
 	const model = req.body.model;
 	const userId = reqBody.user[0].id;
 
 	// upload image to cloudinary and get url
-	const image = (await new UploadOnline().url(req)) || 'Image Not Found';
+	const image = (await new UploadOnline().url(req)) || 'https://i.ibb.co/k5t0hKS/image-1.png';
 	try {
 		const postCar = await new CarService().post(reqBody, String(image));
 		const carId = Number(postCar.id);
 		console.log(carId);
 		const userCreate = await new UserCarService().post({ id: carId, userId });
 		if(userCreate) {
-			res.status(201).json({
+			return res.status(201).json({
 				massege: `Cars ${manufacture} ${model} is sucessfully add to data`,
 			});
 		}
 	} catch (err) {
-		res.status(400).json({ err });
+		return res.status(400).json({ err });
 	}
 };
 
 const put = async (req: Request, res: Response) => {
+	console.log({req});
 	const reqParam = req.params;
 	const id = Number(reqParam.id);
 
@@ -145,12 +147,12 @@ const put = async (req: Request, res: Response) => {
 		);
 		const putUserCar = await new UserCarService().put({ id, userId });
 		if(putCar && putUserCar){
-			res
+			return res
 				.status(200)
 				.json({ massage: `Cars ${manufacture} ${model} is sucessfully update` });
 		}
 	} catch (err) {
-		res.status(400).json({ massege: 'Data not found' });
+		return res.status(400).json({ massege: 'Data not found' });
 	}
 };
 
@@ -166,11 +168,11 @@ const deleteById = async (req: Request, res: Response) => {
 		const deleteData = await new CarService().delete(id);
 		const deleteUserCar = await new UserCarService().delete({ id, userId });
 		if(deleteData && deleteUserCar) {
-			res.status(200).json({
+			return res.status(200).json({
 				massege: `Data car ${filterById[0].manufacture} ${filterById[0].model} sucessfully delete`,
 			});}
 	} catch (err) {
-		res.status(400).json({ massege: 'Data not found' });
+		return res.status(400).json({ massege: 'Data not found' });
 	}
 };
 

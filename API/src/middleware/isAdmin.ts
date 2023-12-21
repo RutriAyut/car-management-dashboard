@@ -6,7 +6,7 @@ const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
 		if (user[0].name === 'SUPER' || user[0].name === 'ADMIN') {
 			next();
 		} else {
-			res.status(401).json({
+			return res.status(401).json({
 				message: 'Unauthorized',
 			});
 		}

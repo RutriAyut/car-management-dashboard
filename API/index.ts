@@ -1,27 +1,56 @@
-// import express, { Express } from "express";
-// const app: Express = express();
-// const PORT: number = 8000;
-// const handleLogger = require("./src/middleware/handleLogger");
-// const carRouter = require("./src/routes/carRouter");
+// import express, { Express } from 'express';
+// import knex from 'knex';
+// import { Model } from 'objection';
 
-// // html./ view setting
-// // app.set("view engine", "ejs");
-// // //path
-// // app.set("views", "./views");
-// // app.use(express.static);
+// const cors = require('cors');
+// const YAML = require('yamljs');
+// const swaggerUI = require('swagger-ui-express');
 
-// app.use(express.urlencoded());
-// app.use(express.json());
-// // app.use(handleLogger);
+// const carRouter = require('./src/routes/carRouter');
+// const authenticationRouter = require('./src/routes/authenticationRouter');
+// const userRouter = require('./src/routes/userRouter');
+// const typeRouter = require('./src/routes/typeRouter');
 
-// // set routing
-// app.use("/cars", carRouter);
-
-// //listen port
-// app.listen(PORT, () => {
-//   console.log(`Express nyala di http://localhost:${PORT}`);
+// const swaggerDocument = YAML.load('openAPI.yaml');
+// const knexInstance = knex({
+// 	client: 'postgresql',
+// 	connection: {
+// 		database: 'db_car_rental',
+// 		user: 'rutri',
+// 		password: 'rutri',
+// 		// filename: "./dev.sqlite3"
+// 	},
 // });
 
-import App from './app';
-const app = new App();
-app.start();
+// Model.knex(knexInstance);
+
+// const app: Express = express();
+// const PORT: number = 8000;
+
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(cors());
+
+// // set routing
+// app.use(
+// 	'/api-docs',
+// 	swaggerUI.serve,
+// 	swaggerUI.setup(swaggerDocument)
+// );
+// app.use('/cars', carRouter);
+// app.use('/user', authenticationRouter); // kebutuhan login dan register
+// app.use('/manage', userRouter); // segala sesuatu yang berhubungan dengan users
+// app.use('/type', typeRouter);
+
+// //listen port
+// const server = app.listen(PORT, () => {
+// 	console.log(`Express nyala di http://localhost:${PORT}`);
+// });
+
+const PORT: number = 8000;
+const App = require('./app');
+const server = App.listen(PORT, () => {
+	console.log(`Express nyala di http://localhost:${PORT}`);
+});
+
+module.exports = server;

@@ -47,7 +47,9 @@ const signin = async (req: Request, res: Response) => {
 		email: user.email,
 		role: role.role_id,
 	});
+
 	const roleObj = await new RoleService().getById(role.role_id);
+	
 	if (roleObj) {
 		const roleName = roleObj.name;
 		return res.status(200).json({
@@ -63,7 +65,6 @@ const signin = async (req: Request, res: Response) => {
 };
 
 const signup = async (req: Request, res: Response) => {
-	console.log('heyo');
 	const email = req.body.email;
 	const password = req.body.password || '';
 	const encryptedPassword = await encryptPassword(password);
@@ -87,15 +88,15 @@ const signup = async (req: Request, res: Response) => {
 		try {
 			const userRoleSignup = await new UserRoleService().post(userId);
 			if(userRoleSignup){
-				res.status(201).json({
+				return res.status(201).json({
 					message: `User ${email} is sucessfully register`,
 					data: userSignup,
 				});}
 		} catch (err) {
-			res.status(400).send({ err });
+			return res.status(400).send({ err });
 		}
 	} catch (err) {
-		res.status(400).send({ err });
+		return res.status(400).send({ err });
 	}
 };
 

@@ -1,0 +1,526 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for Cards/CarsMain/index.tsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">Cards/CarsMain</a> index.tsx</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">84.61% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>11/13</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">33.33% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">84.61% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>11/13</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Text from '../../Text';
+import Button from '../../Button';
+import { carsBody, carsCard } from '../style';
+import { CarsMainProps } from '../../Props';
+&nbsp;
+function CardCarsSearch({
+	tittle,
+	id,
+	description,
+	capacity,
+	transmission,
+	year,
+	rentPerDay,
+}: CarsMainProps) {
+	const navigate = useNavigate();
+	const handleOnClick: (id: number) =&gt; void = <span class="fstat-no" title="function not covered" >(i</span>d) =&gt; {
+<span class="cstat-no" title="statement not covered" >		navigate('/details/' + id);</span>
+	};
+&nbsp;
+	return (
+		&lt;Card className={carsCard}&gt;
+			&lt;Card.Img variant="top" src="https://i.ibb.co/k5t0hKS/image-1.png" /&gt;
+			&lt;Card.Body className={carsBody}&gt;
+				&lt;Text variant={2}&gt;{tittle}&lt;/Text&gt;
+				&lt;Text variant={3} size="16px" height="24px"&gt;
+          Rp. {rentPerDay} / hari
+				&lt;/Text&gt;
+				&lt;Row&gt;
+					&lt;Text&gt;{description}&lt;/Text&gt;
+				&lt;/Row&gt;
+				&lt;Row&gt;
+					&lt;Col xs={1}&gt;
+						&lt;svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 20 20"
+							fill="none"
+						&gt;
+							&lt;path
+								d="M19.1666 17.5001V15.8334C19.1661 15.0948 18.9203 14.3774 18.4678 13.7937C18.0153 13.2099 17.3817 12.793 16.6666 12.6084"
+								stroke="#8A8A8A"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/&gt;
+							&lt;path
+								d="M14.1667 17.5V15.8333C14.1667 14.9493 13.8155 14.1014 13.1904 13.4763C12.5653 12.8512 11.7174 12.5 10.8334 12.5H4.16671C3.28265 12.5 2.43481 12.8512 1.80968 13.4763C1.18456 14.1014 0.833374 14.9493 0.833374 15.8333V17.5"
+								stroke="#8A8A8A"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/&gt;
+							&lt;path
+								d="M13.3334 2.6084C14.0504 2.79198 14.6859 3.20898 15.1397 3.79366C15.5936 4.37833 15.8399 5.09742 15.8399 5.83757C15.8399 6.57771 15.5936 7.2968 15.1397 7.88147C14.6859 8.46615 14.0504 8.88315 13.3334 9.06673"
+								stroke="#8A8A8A"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/&gt;
+							&lt;path
+								d="M7.49996 9.16667C9.34091 9.16667 10.8333 7.67428 10.8333 5.83333C10.8333 3.99238 9.34091 2.5 7.49996 2.5C5.65901 2.5 4.16663 3.99238 4.16663 5.83333C4.16663 7.67428 5.65901 9.16667 7.49996 9.16667Z"
+								stroke="#8A8A8A"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/&gt;
+						&lt;/svg&gt;
+					&lt;/Col&gt;
+					&lt;Col&gt;{capacity}&lt;/Col&gt;
+				&lt;/Row&gt;
+				&lt;Row&gt;
+					&lt;Col xs={1}&gt;
+						&lt;svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 20 20"
+							fill="none"
+						&gt;
+							&lt;g clipPath="url(#clip0_22128_12390)"&gt;
+								&lt;path
+									d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z"
+									stroke="#8A8A8A"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/&gt;
+								&lt;path
+									d="M16.1667 12.5002C16.0558 12.7515 16.0227 13.0303 16.0717 13.3007C16.1207 13.571 16.2496 13.8204 16.4417 14.0168L16.4917 14.0668C16.6467 14.2216 16.7696 14.4054 16.8535 14.6078C16.9373 14.8101 16.9805 15.027 16.9805 15.246C16.9805 15.465 16.9373 15.6819 16.8535 15.8842C16.7696 16.0866 16.6467 16.2704 16.4917 16.4252C16.3369 16.5801 16.1531 16.7031 15.9508 16.7869C15.7484 16.8708 15.5316 16.914 15.3125 16.914C15.0935 16.914 14.8766 16.8708 14.6743 16.7869C14.472 16.7031 14.2882 16.5801 14.1334 16.4252L14.0834 16.3752C13.887 16.183 13.6375 16.0542 13.3672 16.0052C13.0969 15.9561 12.8181 15.9892 12.5667 16.1002C12.3202 16.2058 12.11 16.3812 11.962 16.6048C11.8139 16.8283 11.7344 17.0903 11.7334 17.3585V17.5002C11.7334 17.9422 11.5578 18.3661 11.2452 18.6787C10.9327 18.9912 10.5087 19.1668 10.0667 19.1668C9.62468 19.1668 9.20076 18.9912 8.8882 18.6787C8.57563 18.3661 8.40004 17.9422 8.40004 17.5002V17.4252C8.39359 17.1493 8.30431 16.8818 8.1438 16.6574C7.98329 16.433 7.75899 16.2621 7.50004 16.1668C7.24869 16.0559 6.96988 16.0228 6.69955 16.0718C6.42922 16.1208 6.17977 16.2497 5.98337 16.4418L5.93337 16.4918C5.77858 16.6468 5.59477 16.7697 5.39244 16.8536C5.19011 16.9375 4.97323 16.9806 4.75421 16.9806C4.53518 16.9806 4.3183 16.9375 4.11597 16.8536C3.91364 16.7697 3.72983 16.6468 3.57504 16.4918C3.42008 16.337 3.29715 16.1532 3.21327 15.9509C3.1294 15.7486 3.08623 15.5317 3.08623 15.3127C3.08623 15.0936 3.1294 14.8768 3.21327 14.6744C3.29715 14.4721 3.42008 14.2883 3.57504 14.1335L3.62504 14.0835C3.81715 13.8871 3.94603 13.6376 3.99504 13.3673C4.04406 13.097 4.01097 12.8182 3.90004 12.5668C3.7944 12.3204 3.619 12.1101 3.39543 11.9621C3.17185 11.814 2.90986 11.7346 2.64171 11.7335H2.50004C2.05801 11.7335 1.63409 11.5579 1.32153 11.2453C1.00897 10.9328 0.833374 10.5089 0.833374 10.0668C0.833374 9.6248 1.00897 9.20088 1.32153 8.88832C1.63409 8.57576 2.05801 8.40016 2.50004 8.40016H2.57504C2.85087 8.39371 3.11838 8.30443 3.34279 8.14392C3.5672 7.98341 3.73814 7.75911 3.83337 7.50016C3.9443 7.24882 3.97739 6.97 3.92838 6.69967C3.87936 6.42934 3.75049 6.17989 3.55837 5.9835L3.50837 5.9335C3.35341 5.77871 3.23048 5.59489 3.14661 5.39256C3.06273 5.19023 3.01956 4.97335 3.01956 4.75433C3.01956 4.5353 3.06273 4.31843 3.14661 4.1161C3.23048 3.91377 3.35341 3.72995 3.50837 3.57516C3.66316 3.4202 3.84698 3.29727 4.04931 3.2134C4.25164 3.12952 4.46851 3.08635 4.68754 3.08635C4.90657 3.08635 5.12344 3.12952 5.32577 3.2134C5.5281 3.29727 5.71192 3.4202 5.86671 3.57516L5.91671 3.62516C6.11311 3.81728 6.36255 3.94615 6.63288 3.99517C6.90321 4.04418 7.18203 4.01109 7.43337 3.90016H7.50004C7.74651 3.79453 7.95672 3.61913 8.10478 3.39555C8.25285 3.17198 8.3323 2.90998 8.33337 2.64183V2.50016C8.33337 2.05814 8.50897 1.63421 8.82153 1.32165C9.13409 1.00909 9.55801 0.833496 10 0.833496C10.4421 0.833496 10.866 1.00909 11.1786 1.32165C11.4911 1.63421 11.6667 2.05814 11.6667 2.50016V2.57516C11.6678 2.84332 11.7472 3.10531 11.8953 3.32888C12.0434 3.55246 12.2536 3.72786 12.5 3.8335C12.7514 3.94443 13.0302 3.97752 13.3005 3.9285C13.5709 3.87948 13.8203 3.75061 14.0167 3.5585L14.0667 3.5085C14.2215 3.35354 14.4053 3.2306 14.6076 3.14673C14.81 3.06286 15.0268 3.01968 15.2459 3.01968C15.4649 3.01968 15.6818 3.06286 15.8841 3.14673C16.0864 3.2306 16.2702 3.35354 16.425 3.5085C16.58 3.66328 16.7029 3.8471 16.7868 4.04943C16.8707 4.25176 16.9139 4.46864 16.9139 4.68766C16.9139 4.90669 16.8707 5.12357 16.7868 5.3259C16.7029 5.52823 16.58 5.71204 16.425 5.86683L16.375 5.91683C16.1829 6.11323 16.0541 6.36268 16.005 6.633C15.956 6.90333 15.9891 7.18215 16.1 7.4335V7.50016C16.2057 7.74664 16.3811 7.95684 16.6047 8.10491C16.8282 8.25297 17.0902 8.33243 17.3584 8.3335H17.5C17.9421 8.3335 18.366 8.50909 18.6785 8.82165C18.9911 9.13421 19.1667 9.55813 19.1667 10.0002C19.1667 10.4422 18.9911 10.8661 18.6785 11.1787C18.366 11.4912 17.9421 11.6668 17.5 11.6668H17.425C17.1569 11.6679 16.8949 11.7474 16.6713 11.8954C16.4477 12.0435 16.2723 12.2537 16.1667 12.5002V12.5002Z"
+									stroke="#8A8A8A"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/&gt;
+							&lt;/g&gt;
+							&lt;defs&gt;
+								&lt;clipPath id="clip0_22128_12390"&gt;
+									&lt;rect width="20" height="20" fill="white" /&gt;
+								&lt;/clipPath&gt;
+							&lt;/defs&gt;
+						&lt;/svg&gt;
+					&lt;/Col&gt;
+					&lt;Col&gt;{transmission}&lt;/Col&gt;
+				&lt;/Row&gt;
+				&lt;Row&gt;
+					&lt;Col xs={1}&gt;
+						&lt;svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 20 20"
+							fill="none"
+						&gt;
+							&lt;path
+								d="M15.8333 3.3335H4.16667C3.24619 3.3335 2.5 4.07969 2.5 5.00016V16.6668C2.5 17.5873 3.24619 18.3335 4.16667 18.3335H15.8333C16.7538 18.3335 17.5 17.5873 17.5 16.6668V5.00016C17.5 4.07969 16.7538 3.3335 15.8333 3.3335Z"
+								stroke="#8A8A8A"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/&gt;
+							&lt;path
+								d="M2.5 8.3335H17.5"
+								stroke="#8A8A8A"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/&gt;
+							&lt;path
+								d="M13.3334 1.6665V4.99984"
+								stroke="#8A8A8A"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/&gt;
+							&lt;path
+								d="M6.66663 1.6665V4.99984"
+								stroke="#8A8A8A"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/&gt;
+						&lt;/svg&gt;
+					&lt;/Col&gt;
+					&lt;Col&gt;Tahun {year}&lt;/Col&gt;
+				&lt;/Row&gt;
+				&lt;Button onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >handleOnClick(id)}</span>&gt;Pilih Mobil&lt;/Button&gt;
+			&lt;/Card.Body&gt;
+		&lt;/Card&gt;
+	);
+}
+&nbsp;
+export default CardCarsSearch;
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2023-12-20T08:12:58.564Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    

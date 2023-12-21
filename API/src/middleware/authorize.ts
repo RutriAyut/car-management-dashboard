@@ -15,12 +15,12 @@ const authorize = async (req: Request, res: Response, next: NextFunction) => {
 			req.body.user = await new UserService().getById(tokenPayload.id);
 			next();
 		} else {
-			res.status(401).json({
+			return res.status(401).json({
 				message: 'Unauthorized',
 			});
 		}
 	} catch (error) {
-		res.status(401).json({
+		return res.status(401).json({
 			message: 'Unauthorized',
 		});
 	}
