@@ -1,4 +1,3 @@
-import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import {
 	carouselWrapper,
@@ -24,7 +23,7 @@ function CarouselCustom() {
               sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing
               elit, sed do eiusmod”
 						</Text>
-						<Text variant={2}>John Dee 32, Bromo</Text>
+						<Text variant={2}>User 32, Bromo</Text>
 					</div>
 				</div>
 			</Carousel.Item>

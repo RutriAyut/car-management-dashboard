@@ -1,4 +1,3 @@
-import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Text from '../Text';
 import Accordion from '../Accordion';

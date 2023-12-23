@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from '../Logo';
 import Text from '../Text';
 import { footerCol, footerRow, sm, smRow } from './style';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { boxMenuIcon } from './style';
 import { ChildrenProps } from '../Props';
 
