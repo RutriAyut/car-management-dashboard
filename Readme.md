@@ -1,10 +1,31 @@
 # BCR - Car Management Dashboard
 
-Aplikasi web CRUD menggunakan express.js dan typescript untuk management data mobil. Aplikasi dibuat sebagai bagian dari challenge chapter 5, fullstack web development course di Binar Academy.
+Aplikasi web CRUD menggunakan express.js dan typescript untuk management data mobil. Aplikasi dibuat sebagai bagian dari challenge chapter 8, fullstack web development course di Binar Academy.
 
 ## Database
 
 nama : db_car_rental
+
+## How to use ?
+
+### Backend :
+```
+cd API
+npm i
+```
+create database `db_car_rental` in postgres
+```
+npx knex migrate:latest
+npx knex seed:run
+npm start
+```
+
+### Frontend : 
+```
+cd frontendts
+npm i
+npm run dev
+```
 
 ## Port
 
@@ -40,11 +61,9 @@ Ada 2 versi frontend yang dibuat
 ### NB :
 
 - untuk upload image car masih belum berjalan.
-- masih menggunakan javascript belum menggunakan typescript
 - untuk login menggunakan
 
   email : super_admin@gmail.com
 
   password : superadmin
 
-- context digunakan untuk memphasing data di form input dan edit
