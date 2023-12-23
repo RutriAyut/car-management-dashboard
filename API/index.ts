@@ -49,8 +49,6 @@
 
 const PORT: number = 8000;
 const App = require('./app');
-const server = App.listen(PORT, () => {
+App.listen(PORT, () => {
 	console.log(`Express nyala di http://localhost:${PORT}`);
 });
-
-module.exports = server;
