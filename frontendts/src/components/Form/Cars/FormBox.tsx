@@ -1,4 +1,3 @@
-import React from 'react';
 import { node, string } from 'prop-types';
 import { formBox } from './style';
 import { Levelwidth } from '../../../context';
