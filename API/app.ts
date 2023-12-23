@@ -1,6 +1,8 @@
 import express, { Express } from 'express';
 import knex from 'knex';
 import { Model } from 'objection';
+import { Response } from 'express';
+
 
 const cors = require('cors');
 const YAML = require('yamljs');
@@ -41,6 +43,10 @@ app.use('/cars', carRouter);
 app.use('/user', authenticationRouter); // kebutuhan login dan register
 app.use('/manage', userRouter); // segala sesuatu yang berhubungan dengan users
 app.use('/type', typeRouter);
+
+app.get('/', (_, res: Response) => {
+	res.send('Express + TypeScript Server ++++++');
+});
 
 //listen port
 // const server = app.listen(PORT, () => {
