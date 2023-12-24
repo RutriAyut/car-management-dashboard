@@ -58,4 +58,5 @@ app.get('/', (_, res: Response) => {
 // const server = app.start();
 
 // export default app;
+
 module.exports = app;
