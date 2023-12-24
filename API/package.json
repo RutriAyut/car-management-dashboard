@@ -5,9 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "jest --config ./jest.config.js --forceExit",
-    "start": "node dist/index.js",
-    "lint": "eslint .",
-    "deploy":"fly deploy"
+    "start": "ts-node ./index.ts",
+    "lint": "eslint ."
   },
   "author": "Rutri",
   "license": "ISC",
