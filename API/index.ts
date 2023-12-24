@@ -1,4 +1,3 @@
-declare module 'express'
 import express, { Express } from 'express';
 import knex from 'knex';
 import { Model } from 'objection';
