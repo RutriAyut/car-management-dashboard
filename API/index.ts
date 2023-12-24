@@ -17,9 +17,11 @@ const swaggerDocument = YAML.load('openAPI.yaml');
 const knexInstance = knex({
 	client: 'postgresql',
 	connection: {
-		database: 'db-bcr',
 		user: 'postgres',
-		password: 'rutri',
+		password: 'tj7khygrTaoqiP1',
+		port: 15432,
+		host: '127.0.0.1',
+		database:'api_bcr'
 		// filename: "./dev.sqlite3"
 	},
 });

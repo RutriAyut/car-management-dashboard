@@ -60,6 +60,7 @@ Ada 2 versi frontend yang dibuat
 
 ### NB :
 
+- database still not working
 - untuk upload image car masih belum berjalan.
 - untuk login menggunakan
 
