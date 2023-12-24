@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
 import express, { Express } from 'express';
 import knex from 'knex';
 import { Model } from 'objection';
