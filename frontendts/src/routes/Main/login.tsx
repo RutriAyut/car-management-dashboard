@@ -15,7 +15,7 @@ import Button from '../../components/Button';
 import { PostLogin } from '../../components/Props';
 
 const Login = () => {
-	const API = 'http://localhost:8000/user/signin';
+	const API = 'https://api-bcr.fly.dev/user/signin';
 	const [error, setError] = useState<boolean>(false);
 	const [message, setMessage] = useState<string>('');
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);

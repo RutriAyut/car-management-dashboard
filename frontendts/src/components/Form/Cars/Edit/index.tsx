@@ -25,10 +25,10 @@ const EditCar = () => {
 	};
 
 	const { id } = useParams();
-	const API = 'http://localhost:8000/cars/details/' + id;
+	const API = 'https://api-bcr.fly.dev/cars/details/' + id;
 	const [data, setData] = useState<DataCarById>();
 
-	const APIType = 'http://localhost:8000/type';
+	const APIType = 'https://api-bcr.fly.dev/type';
 	const [type, setType] = useState<DataTypes>([]);
 
 	const [driver, setDriver] = useState<boolean>(false);
@@ -64,7 +64,7 @@ const EditCar = () => {
 		setDriver(!driver);
 	};
 
-	const APIPUT = 'http://localhost:8000/cars/update/' + id;
+	const APIPUT = 'https://api-bcr.fly.dev/cars/update/' + id;
 	const token = localStorage.getItem('token');
 
 	const put = async ({

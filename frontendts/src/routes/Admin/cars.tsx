@@ -11,7 +11,7 @@ import Text from '../../components/Text';
 import Button from '../../components/Button';
 import { DataCarsAdmin } from '../../components/Props';
 
-const API = 'http://localhost:8000/cars';
+const API = 'https://api-bcr.fly.dev/cars/';
 
 function Cars() {
 	const [loading, setloading] = useState<boolean>(false);

@@ -14,14 +14,11 @@ const authenticationRouter = require('./src/routes/authenticationRouter');
 const userRouter = require('./src/routes/userRouter');
 const typeRouter = require('./src/routes/typeRouter');
 const swaggerDocument = YAML.load('openAPI.yaml');
+const pg = require('pg');
+pg.defaults.ssl = true;
 const knexInstance = (0, knex_1.default)({
-    client: 'postgresql',
-    connection: {
-        database: 'db_car_rental',
-        user: 'rutri',
-        password: 'rutri',
-        // filename: "./dev.sqlite3"
-    },
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
 });
 objection_1.Model.knex(knexInstance);
 const app = (0, express_1.default)();
