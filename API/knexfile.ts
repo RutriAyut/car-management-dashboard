@@ -1,5 +1,5 @@
 require('dotenv').config();
-const pg = require('pg');
+import pg from 'pg';
 pg.defaults.ssl = true;
 module.exports = {
 	client: 'pg',
