@@ -27,6 +27,12 @@ npm i
 npm run dev
 ```
 
+## Netlify - Frontend
+https://stately-granita-c754cc.netlify.app/
+
+## Fly.io - Backend
+https://api-bcr.fly.dev
+
 ## Port
 
 Server app berjalan di port 8000 `http://localhost:8000/`
@@ -60,7 +66,6 @@ Ada 2 versi frontend yang dibuat
 
 ### NB :
 
-- database still not working
 - untuk upload image car masih belum berjalan.
 - untuk login menggunakan
 
