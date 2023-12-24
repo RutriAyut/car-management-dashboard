@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+	return (mod && mod.__esModule) ? mod : { 'default': mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+Object.defineProperty(exports, '__esModule', { value: true });
+const express_1 = __importDefault(require('express'));
 const cors = require('cors');
 const YAML = require('yamljs');
 const swaggerUI = require('swagger-ui-express');
@@ -34,7 +34,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 // app.use('/manage', userRouter); // segala sesuatu yang berhubungan dengan users
 // app.use('/type', typeRouter);
 app.get('/', (_, res) => {
-    res.send('Express + TypeScript Server ++++++');
+	res.send('Express + TypeScript Server ++++++');
 });
 //listen port
 // const server = app.listen(PORT, () => {
@@ -46,5 +46,5 @@ app.get('/', (_, res) => {
 // export default app;
 const PORT = 8000;
 app.listen(PORT, () => {
-    console.log(`Express nyala di http://localhost:${PORT}`);
+	console.log(`Express nyala di http://localhost:${PORT}`);
 });
