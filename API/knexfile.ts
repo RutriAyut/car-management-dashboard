@@ -6,10 +6,11 @@ const config: { [key: string]: Knex.Config } = {
 	development: {
 		client: 'postgresql',
 		connection: {
-			database: 'db_car_rental',
-			user: 'rutri',
-			password: 'rutri',
-			// filename: "./dev.sqlite3"
+			user: 'postgres',
+			password: 'tj7khygrTaoqiP1',
+			port: 15432,
+			host: '127.0.0.1',
+			database:'api_bcr'
 		},
 	},
 

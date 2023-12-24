@@ -27,6 +27,12 @@ npm i
 npm run dev
 ```
 
+## Netlify - Frontend
+https://stately-granita-c754cc.netlify.app/
+
+## Fly.io - Backend
+https://api-bcr.fly.dev
+
 ## Port
 
 Server app berjalan di port 8000 `http://localhost:8000/`

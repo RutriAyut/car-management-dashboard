@@ -23,7 +23,7 @@ const CreateCar = () => {
 		navigate('/admin/cars/');
 	};
 
-	const APIType = 'http://localhost:8000/type';
+	const APIType = 'https://api-bcr.fly.dev/type';
 	const [type, setType] = useState<DataTypes>([]);
 
 	useEffect(() => {
@@ -36,7 +36,7 @@ const CreateCar = () => {
 		}
 	}, [type]);
 
-	const API = 'http://localhost:8000/cars/create';
+	const API = 'https://api-bcr.fly.dev/cars/create';
 	const token = localStorage.getItem('token');
 
 	const post = async ({

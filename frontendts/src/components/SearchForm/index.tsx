@@ -13,7 +13,7 @@ import { carsBox, searchBox, searchContainer } from './style';
 import { useEffect, useState } from 'react';
 import { DataCars, DataTypes } from '../Props';
 
-const API = 'http://localhost:8000/cars';
+const API = 'https://api-bcr.fly.dev/cars/';
 
 function waktu() {
 	const arr = [];

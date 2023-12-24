@@ -1,56 +1,54 @@
-// import express, { Express } from 'express';
-// import knex from 'knex';
-// import { Model } from 'objection';
+import express, { Express } from 'express';
+import knex from 'knex';
+import { Model } from 'objection';
+import { Response } from 'express';
 
-// const cors = require('cors');
-// const YAML = require('yamljs');
-// const swaggerUI = require('swagger-ui-express');
 
-// const carRouter = require('./src/routes/carRouter');
-// const authenticationRouter = require('./src/routes/authenticationRouter');
-// const userRouter = require('./src/routes/userRouter');
-// const typeRouter = require('./src/routes/typeRouter');
+const cors = require('cors');
+const YAML = require('yamljs');
+const swaggerUI = require('swagger-ui-express');
 
-// const swaggerDocument = YAML.load('openAPI.yaml');
-// const knexInstance = knex({
-// 	client: 'postgresql',
-// 	connection: {
-// 		database: 'db_car_rental',
-// 		user: 'rutri',
-// 		password: 'rutri',
-// 		// filename: "./dev.sqlite3"
-// 	},
-// });
+const carRouter = require('./src/routes/carRouter');
+const authenticationRouter = require('./src/routes/authenticationRouter');
+const userRouter = require('./src/routes/userRouter');
+const typeRouter = require('./src/routes/typeRouter');
 
-// Model.knex(knexInstance);
-
-// const app: Express = express();
-// const PORT: number = 8000;
-
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-// app.use(cors());
-
-// // set routing
-// app.use(
-// 	'/api-docs',
-// 	swaggerUI.serve,
-// 	swaggerUI.setup(swaggerDocument)
-// );
-// app.use('/cars', carRouter);
-// app.use('/user', authenticationRouter); // kebutuhan login dan register
-// app.use('/manage', userRouter); // segala sesuatu yang berhubungan dengan users
-// app.use('/type', typeRouter);
-
-// //listen port
-// const server = app.listen(PORT, () => {
-// 	console.log(`Express nyala di http://localhost:${PORT}`);
-// });
-
-const PORT: number = 8000;
-const App = require('./app');
-const server = App.listen(PORT, () => {
-	console.log(`Express nyala di http://localhost:${PORT}`);
+const swaggerDocument = YAML.load('openAPI.yaml');
+const knexInstance = knex({
+	client: 'postgresql',
+	connection: {
+		user: 'postgres',
+		password: 'tj7khygrTaoqiP1',
+		port: 15432,
+		host: '127.0.0.1',
+		database:'api_bcr'
+		// filename: "./dev.sqlite3"
+	},
 });
 
-module.exports = server;
+Model.knex(knexInstance);
+const app: Express = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+
+// set routing
+app.use(
+	'/api-docs',
+	swaggerUI.serve,
+	swaggerUI.setup(swaggerDocument)
+);
+app.use('/cars', carRouter);
+app.use('/user', authenticationRouter); // kebutuhan login dan register
+app.use('/manage', userRouter); // segala sesuatu yang berhubungan dengan users
+app.use('/type', typeRouter);
+
+app.get('/', (_, res: Response) => {
+	res.send('Express + TypeScript Server ++++++');
+});
+
+const PORT= 8000;
+app.listen(PORT, () => {
+	console.log(`Express nyala di http://localhost:${PORT}`);
+});

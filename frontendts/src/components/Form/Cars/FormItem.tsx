@@ -1,4 +1,3 @@
-import React from 'react';
 import Row from 'react-bootstrap/Row';
 import { useContext } from 'react';
 import { Levelwidth } from '../../../context';
